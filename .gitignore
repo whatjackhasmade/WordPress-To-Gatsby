@@ -1,5 +1,2 @@
 dist
-site
-coverage
 node_modules
-yarn.lock
