@@ -1,14 +1,20 @@
 import { Head } from "mdx-deck";
 
+import Status from "./components/Status";
+
 export { future as theme } from "mdx-deck/themes";
 
 <Head>
 	<title>WordPress to Gatsby</title>
 </Head>
 
+<Status />
+
 # WordPress to Gatsby
 
 ---
+
+<Status />
 
 ## Jack Pritchard
 
@@ -18,9 +24,11 @@ export { future as theme } from "mdx-deck/themes";
 
 ---
 
+<Status />
+
 ## Shameless Plug
 
-### Taking on projects for summer 2019 ☀
+### Taking on projects for summer 2019
 
 I focus on front-end applications and have experience with React, NextJS, Gatsby, WordPress, Timber, and most of the related frameworks.
 
@@ -28,11 +36,15 @@ I focus on front-end applications and have experience with React, NextJS, Gatsby
 
 ---
 
+<Status />
+
 ## Back to the talk Jack 👀
 
-### WordPress ➡ Gatsby
+---
 
-This presentation is a step by step process on how I have somehow managed to import my WordPress to the popular static site generator, Gatsby.
+## WordPress to Gatsby
+
+This presentation is a step by step process on how I have imported my WordPress website data to one of the most popular static site generator, Gatsby.
 
 ---
 
@@ -44,7 +56,7 @@ This presentation is a step by step process on how I have somehow managed to imp
 
 I assume many of you in the room know what WordPress is.
 
-However, for those who need a recap, WordPress is a CMS (Content Management System).
+However, for those who need a recap, WordPress is an open source CMS (Content Management System).
 
 Super popular, and used in a large portion of all sites on the web.
 
@@ -52,7 +64,7 @@ Super popular, and used in a large portion of all sites on the web.
 
 ## Headless WordPress
 
-I want to make this clear distinction that whilst WordPress is useful for quick brochure site builds and handling of data, we are not going to be using traditional PHP or Twig files to generate our pages.
+I want to make this clear distinction that whilst WordPress is great for a large portion of general client sites and handling of data, we are not going to be solely relying on traditional PHP or Twig files to generate our pages.
 
 Instead we are going to be creating custom API endpoints from WordPress and importing that data to Gatsby later.
 
@@ -64,7 +76,16 @@ For anyone using WordPress, I assume you know what Gutenberg is.
 
 For better or for worse.
 
+For those who aren't up to date on the WordPress debates surrounding Classic Editor over Gutenberg -
 Gutenberg is the default post content editor, available as of WordPress 5.0.0.
+
+---
+
+## Gutenberg
+
+I know it has it's issues.
+
+However, I think the block building experience is here to stay.
 
 ---
 

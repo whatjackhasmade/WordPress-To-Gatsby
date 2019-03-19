@@ -15,5 +15,9 @@
   "devDependencies": {
     "mdx-deck": "^1.6.7"
   },
-  "name": "my-presentation-name"
+  "name": "my-presentation-name",
+  "dependencies": {
+    "react": "^16.8.4",
+    "styled-components": "^4.1.3"
+  }
 }
