@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const StatusElement = styled.header`
+	position: absolute;
 	left: 0;
-	padding: 8px;
+	padding: 16px;
 	top: 0;
 
 	span {
@@ -25,35 +26,27 @@ const stages = [
 		stageCount: 3
 	},
 	{
-		icon: "👋",
-		stageCount: 2
+		icon: "🍑",
+		stageCount: 6
 	},
 	{
-		icon: "👋",
-		stageCount: 2
+		icon: "🎨",
+		stageCount: 12
 	},
 	{
-		icon: "👋",
-		stageCount: 2
-	},
-	{
-		icon: "👋",
-		stageCount: 2
-	},
-	{
-		icon: "👋",
-		stageCount: 2
+		icon: "⚛",
+		stageCount: 13
 	}
 ];
 
 export default class Status extends Component {
 	render() {
-		const slideCount = this.props.slideCount ? this.props.slideCount : 0;
+		const index = this.props.index ? this.props.index : 0;
 
 		return (
 			<StatusElement>
 				{stages.map(stage => {
-					if (slideCount >= stage.stageCount) {
+					if (index >= stage.stageCount) {
 						return (
 							<span className="status__stage status__complete">
 								{stage.icon}

@@ -1,30 +1,23 @@
-import { Head } from "mdx-deck";
+import { Image, Head, Notes } from "mdx-deck";
+import { CodeSurfer } from "mdx-deck-code-surfer";
 
-import Status from "./components/Status";
-
-export { future as theme } from "mdx-deck/themes";
+export { default as theme } from "./theme.js";
 
 <Head>
 	<title>WordPress to Gatsby</title>
 </Head>
 
-<Status />
-
 # WordPress to Gatsby
 
 ---
-
-<Status />
 
 ## Jack Pritchard
 
 ### Freelance Fullstack Website Developer
 
-🏄‍ You can often find me surfing the world wide web
+🏄‍ Most of the time you'll find me surfing the world wide web
 
 ---
-
-<Status />
 
 ## Shameless Plug
 
@@ -36,8 +29,6 @@ I focus on front-end applications and have experience with React, NextJS, Gatsby
 
 ---
 
-<Status />
-
 ## Back to the talk Jack 👀
 
 ---
@@ -48,7 +39,13 @@ This presentation is a step by step process on how I have imported my WordPress 
 
 ---
 
-## Let's first define some of the technologies being used
+## First things first!
+
+### let us define some of the technologies being used
+
+---
+
+# Our Backend 🍑
 
 ---
 
@@ -76,16 +73,16 @@ For anyone using WordPress, I assume you know what Gutenberg is.
 
 For better or for worse.
 
-For those who aren't up to date on the WordPress debates surrounding Classic Editor over Gutenberg -
-Gutenberg is the default post content editor, available as of WordPress 5.0.0.
+<Notes>
+	For those who aren't up to date on the WordPress drama surrounding Classic
+	Editor over Gutenberg - Gutenberg is the default post content editor,
+	available as of WordPress 5.0.0.
 
----
-
-## Gutenberg
-
-I know it has it's issues.
+    I know it has it's issues.
 
 However, I think the block building experience is here to stay.
+
+</Notes>
 
 ---
 
@@ -99,7 +96,11 @@ Not only this, but as of ACF 5.8.0 (We are using a beta build) you can now attac
 
 ---
 
-## React
+# Our Frontend 🎨
+
+---
+
+## React ⚛
 
 ---
 
@@ -113,23 +114,35 @@ Gatsby is a static site generator that can generate static HTML files from data 
 
 The final result is that which encompasses all of the latest and greatest available in React tooling with an old-school feel of hosting a site made up of HTML, CSS and JS files alone.
 
----
-
+<Notes>
 As Gatsby is a fresh technology, many developers are opting to search for new CMS alternatives to WordPress which are compatible with Gatsby.
 
 Either that or they are completely rebuilding their sites in markdown files.
 
 I'm in favour of porting existing technologies to improve client usability and reduce the cost of embracing new technologies.
 
+</Notes>
+
 ---
 
 ## Netlify
 
-Finally we're going to host our site on one of the most delightful hosting platforms available.
+Netlify is one of the most delightful hosting platforms available.
 
-Netlify is completely free to get started with hosting static sites, and will automatically build and deploy our site when repository changes are made to our code.
+Even better, it's completely free to get started with hosting static sites, it'll even automatically build and deploy our site when changes are made to our repositories.
 
-Alternatively we can kick off a build from the WordPress dashboard using webhooks.
+---
+
+## So...
+
+- WordPress
+- Headless WordPress
+- Gutenberg
+- ACF
+- React
+- Styled Components
+- Gatsby
+- Netlify
 
 ---
 
@@ -137,8 +150,83 @@ Alternatively we can kick off a build from the WordPress dashboard using webhook
 
 I know we've covered 8 technologies, frameworks or plugins.
 
-It can seem like this talk is going to be intense but I'm no confessed expert with these tools.
+---
 
-I do know how to build an MVP though, and that's what we're going to cover in this presentation so raise your hand if you have any questions during the talk (or save them for the end).
+## Queue Flashback Music
+
+---
+
+## My Prefered way of learning/teaching
+
+I am a man that loves to build and learn from mistakes.
+
+I don't have the patience to read articles without actually going away and building something.
+
+---
+
+## With that in Mind
+
+I've set myself a task, to rebuild my personal website https://whatjackhasmade.co.uk 🔌
+
+---
+
+## We'll be going from concept to deploy
+
+---
+
+## Designs
+
+I'm a big fan of atomic design, for anyone unfamiliar, atomic design is a concept of looking at pages and slicing them into smaller and smaller components.
+
+<Notes>
+	Brad Frost is the dad of Atomic Design so I highly recommend checking out his
+	material if you want to learn more.
+</Notes>
+
+---
+
+<Image src="assets/images/homepage.png" size="1000px" />
+
+---
+
+<Image src="assets/images/services.png" size="1000px" />
+
+---
+
+## WordPress
+
+All we need to know is that we are running version 5 or above.
+
+My WordPress environment is hosted at https://wjhm.noface.app
+
+---
+
+## WordPress plugins
+
+- ACF 5.8.0 Beta 3.0
+- Enhanced Media Library
+- Timber
+- TinyPNG
+- WP Migrate DB Pro
+- WP Migrate DB Pro (Media Add-on)
+- Yoast SEO
+
+---
+
+## WordPress Theme
+
+To kickstart the WordPress theme, I've downloaded and install the Timber Starter Theme.
+
+I've made a few alterations to the code but we'll dive into that in a moment.
+
+---
+
+<Image src="assets/images/theme-structure.png" size="500px" />
+
+---
+
+## This is what we're left with
+
+<iframe src="https://wjhm.noface.app" height="500px" width="1000px" />
 
 ---

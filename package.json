@@ -1,23 +1,26 @@
 {
-  "private": true,
-  "version": "1.0.0",
-  "description": "Deck created with mdx-deck",
-  "scripts": {
-    "start": "mdx-deck deck.mdx",
-    "build": "mdx-deck build deck.mdx",
-    "pdf": "mdx-deck pdf deck.mdx",
-    "image": "mdx-deck screenshot deck.mdx",
-    "help": "mdx-deck"
-  },
-  "keywords": [],
-  "author": "Brent Jackson",
-  "license": "MIT",
-  "devDependencies": {
-    "mdx-deck": "^1.6.7"
-  },
-  "name": "my-presentation-name",
-  "dependencies": {
-    "react": "^16.8.4",
-    "styled-components": "^4.1.3"
-  }
+	"private": true,
+	"version": "1.0.0",
+	"description": "Deck created with mdx-deck",
+	"scripts": {
+		"start": "mdx-deck deck.mdx",
+		"dev": "mdx-deck deck.mdx",
+		"build": "mdx-deck build deck.mdx",
+		"pdf": "mdx-deck pdf deck.mdx",
+		"image": "mdx-deck screenshot deck.mdx",
+		"help": "mdx-deck"
+	},
+	"keywords": [],
+	"author": "Brent Jackson",
+	"license": "MIT",
+	"devDependencies": {
+		"mdx-deck": "^1.6.7",
+		"mdx-deck-code-surfer": "^0.5.5",
+		"raw-loader": "^2.0.0"
+	},
+	"name": "my-presentation-name",
+	"dependencies": {
+		"react": "^16.8.4",
+		"styled-components": "^4.1.3"
+	}
 }
