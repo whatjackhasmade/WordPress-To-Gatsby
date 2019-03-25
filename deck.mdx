@@ -682,7 +682,10 @@ Fire away with any questions you may have, or heckle me if you're bored of this 
 
 Right let's get into the front-end of the website.
 
-This portion of the presentation is heavily decoupled from WordPress but we will be revisiting previous slides when registering new components.
+<Notes>
+	This portion of the presentation is heavily decoupled from WordPress but we
+	will be revisiting previous slides when registering new components.
+</Notes>
 
 ---
 
@@ -690,7 +693,11 @@ This portion of the presentation is heavily decoupled from WordPress but we will
 
 Just to recap, the front-end will be built with Gatsby which is completely dependant on React.
 
-I won't go too much into React and how to get started, for the most part if you have npm or yarn on your machine, you'll be fine setting up a new gatsby site.
+<Notes>
+	I won't go too much into React and how to get started, for the most part if
+	you have npm or yarn on your machine, you'll be fine setting up a new gatsby
+	site.
+</Notes>
 
 ---
 
@@ -704,15 +711,15 @@ If you want to follow along with my site example, download the repository from -
 
 ---
 
-## Gatsby - Overview
-
-![alt_text](images/Untitled-document0.png "image_tooltip")
+<Image src="assets/images/gatsby-workflow.png" size="500px" />
 
 ---
 
-## Diagram of Gatsby vs Traditional server
+## Gatsby vs Traditional server
 
-![alt_text](images/Untitled-document1.jpg "image_tooltip")
+---
+
+<Image src="assets/images/gatsby-vs-server.png" size="500px" />
 
 ---
 
@@ -730,9 +737,13 @@ If you want to follow along with my site example, download the repository from -
 
 If we look again at the diagram of Gatsby's rendering process, you'll see that we have some form of data input for Gatsby to process.
 
+---
+
+## Gatsby Plugins
+
 To gather the data, one of Gatsby's open source plugins can be plucked from their directory and installed via NPM and the gatsby-config.js file in our site root directory.
 
-Whilst there are many Gatsby plugins out there for data, I prefer to create my own.
+There are existing plugins for WordPress data, but I prefer to create my own.
 
 ---
 
@@ -746,9 +757,14 @@ Plugin-wordpress.js code snippet
 
 To run the site, you'll need to have terminal access to the Gatsby root folder and run `yarn run dev` or `npm run dev`.
 
-Once started, Gatsby will begin preparing assets, data and any other configurations you've setup.
+<Notes>
+	Once started, Gatsby will begin preparing assets, data and any other
+	configurations you've setup.
+</Notes>
 
-yarn-run-dev.png
+---
+
+<Image src="assets/images/yarn-run-dev.png" size="700px" />
 
 ---
 
@@ -756,7 +772,11 @@ yarn-run-dev.png
 
 For most developers, querying data in WordPress is often done in the templating language itself via WordPress functions like the_title(); or get_field();
 
-Other developers may opt to query using SQL statements.
+<Notes>Other developers may opt to query using SQL statements.</Notes>
+
+---
+
+## Access to data via GraphQL
 
 However, with Gatsby we have access to the data in a language called GraphQL.
 
@@ -766,21 +786,63 @@ However, with Gatsby we have access to the data in a language called GraphQL.
 
 To query the data Gatsby has access to, we can either pop open their friendly URL which for me is [http://localhost:8000/\_\_\_graphql](http://localhost:8000/___graphql)
 
+---
+
+## GraphQL
+
 I prefer to use a tool called GraphQL Playground as it has a dark mode which helps with my vision!
 
-graphql-playground.png
+---
+
+<Image src="assets/images/graphql-playground.png" size="700px" />
 
 ---
 
 ## My First Gatsby GraphQL Query
 
-graphql-playground-query.png
+---
+
+<Image src="assets/images/graphql-playground-query.png" size="1200px" />
+
+---
+
+```
+{
+	allPost {
+		edges {
+			node {
+				id
+				date
+				title
+			}
+		}
+	}
+}
+```
+
+---
+
+## Pages in Gatsby
+
+Similar to how with basic PHP setups, you can add a new page by adding a `blog.php` file and you'll then get a `/blog` path on your site.
+
+The same can be done in Gatsby's `pages` directory.
 
 ---
 
 ## Auto-generate pages with JSON and GraphQL
 
+We'll be skipping that and instead auto generating the pages based on the JSON available at our custom endpoints.
+
+---
+
 plugin-wordpress-generate.js
+
+---
+
+## Auto-generate pages with JSON and GraphQL
+
+With the auto generating of the pages, we are passing the data values into the page and that data is accessible with something called 'props' in React.
 
 ---
 
@@ -788,11 +850,18 @@ plugin-wordpress-generate.js
 
 Page.jsx
 
+---
+
+## Accessing the data via props
+
 So now that pages are rendering with the template Page.jsx
 
 We have access to the data we have specified in our plugin available to the template as a prop.
 
-The main data we want to access is the page content as that is our Gutenberg blocks layout object.
+<Notes>
+	The main data we want to access is the page content as that is our Gutenberg
+	blocks layout object.
+</Notes>
 
 ---
 
@@ -802,7 +871,22 @@ The data itself is still simply that, data.
 
 To process the data we need to write some functions which check what type of block is available and then render the correct React component based on that.
 
-This is done with my ACFParser block, which is one of the largest files in my project.
+<Notes>
+	This is done with my ACFParser block, which is one of the largest files in my
+	project.
+</Notes>
+
+---
+
+## ACFParser block
+
+Parser.jsx
+
+---
+
+## ACFParser block
+
+If the parser detects the name `acf/hero` which we have in our endpoint then it will import that component with all of the layout, styles and logic related to it.
 
 ---
 
@@ -812,11 +896,24 @@ Hero.jsx
 
 ---
 
+## Our Hero Component
+
+Our Hero component will have access to any data we pass in via the ACFParser.
+
+<Notes>
+	The two data fields we are importing are the background colour of the hero,
+	and the WYSIWYG content.
+</Notes>
+
+---
+
 ## Building our pages
 
 All that is left now is to start creating content in WordPress to be digested by Gatsby.
 
-wordpress-create.png
+---
+
+<Image src="assets/images/wordpress-create.png" size="1200px" />
 
 ---
 
@@ -828,23 +925,29 @@ The hero component is a great example of how it can be used effectively.
 
 Simply changing the background colour value in WordPress means that we have updated the prop set in our component on render.
 
-wordpress-create-hero-red.png
+---
+
+<Image src="assets/images/wordpress-create-hero-red.png" size="1200px" />
 
 ---
 
 ## Creating Future Components
 
-- Register block - Functions
-- Register block - Twig (Optional)
-- Register block - ACF
-- Find and Replace - Functions
-- React Component
+1. Register block - Functions
+2. Register block - Twig (Optional)
+3. Register block - ACF
+4. Find and Replace - Functions
+5. React Component
 
 ---
 
 ## Hooking Netlify Up
 
 So now we have a static site being generated. It's time to get this bad boy live for the world to see.
+
+---
+
+## Hooking Netlify Up
 
 [https://app.netlify.com/](https://app.netlify.com/) are a great hosting solution as again it's FREE and they continously deploy on repository changes, warn you of insecure code references (HTTP vs. HTTPS).
 
@@ -856,9 +959,9 @@ Video of connecting
 
 ---
 
-## Hello World
+# 👋
 
-:D
+## Hello World
 
 ---
 
@@ -870,12 +973,8 @@ Thanks for letting me ramble, there may be a few points I had to trim out for th
 
 ## Contact Information
 
-jack@noface.co.uk
-
-whatjackhasmade on all socials
-
-NoFace is my company
-
-whatjackhasmade.co.uk
-
-noface.co.uk
+- jack@noface.co.uk
+- whatjackhasmade on all socials
+- whatjackhasmade.co.uk
+- noface.co.uk
+- NoFace is my company
