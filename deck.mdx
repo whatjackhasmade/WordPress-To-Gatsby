@@ -41,6 +41,8 @@ This presentation is a step by step process on how I have imported my WordPress 
 
 ## The Final Product
 
+---
+
 <iframe src="https://whatjackhasmade.co.uk" height="800px" width="1600px" />
 
 ---
@@ -719,7 +721,7 @@ If you want to follow along with my site example, download the repository from -
 
 ---
 
-<Image src="assets/images/gatsby-vs-server.png" size="500px" />
+<Image src="assets/images/jam-stack.jpg" size="500px" />
 
 ---
 
@@ -917,13 +919,24 @@ All that is left now is to start creating content in WordPress to be digested by
 
 ---
 
-## Styled Components
+## Things to be aware of
 
-Remember way back at the start of this presentation I said we were using Styled Components?
+During development, Gatsby only has access to data imported on the time of `yarn run dev` or `npm run dev`.
+
+If you create new pages or add content to WordPress, restart your local server.
+
+---
+
+## Styled Components
 
 The hero component is a great example of how it can be used effectively.
 
+<Notes>
+Remember way back at the start of this presentation I said we were using Styled Components?
+
 Simply changing the background colour value in WordPress means that we have updated the prop set in our component on render.
+
+</Notes>
 
 ---
 
@@ -955,7 +968,16 @@ So now we have a static site being generated. It's time to get this bad boy live
 
 ## Hooking Netlify Up
 
-Video of connecting
+---
+
+<iframe
+	width="940"
+	height="540"
+	src="https://www.youtube.com/embed/4IkOesUILhs"
+	frameborder="0"
+	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+	allowfullscreen
+/>
 
 ---
 
