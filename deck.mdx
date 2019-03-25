@@ -29,7 +29,7 @@ I focus on front-end applications and have experience with React, NextJS, Gatsby
 
 ---
 
-## Back to the talk Jack 👀
+## Back To The Talk Jack 👀
 
 ---
 
@@ -39,9 +39,9 @@ This presentation is a step by step process on how I have imported my WordPress 
 
 ---
 
-## The final product
+## The Final Product
 
-Iframe
+<iframe src="https://whatjackhasmade.co.uk" height="800px" width="1600px" />
 
 ---
 
@@ -79,9 +79,10 @@ Instead, we are going to be creating custom API endpoints in our WordPress theme
 Essentially using WordPress as only a backend.
 
 <Notes>
-	I want to make this clear distinction that whilst WordPress is great for a
-	large portion of general client sites and handling of data, we are not going
-	to be solely relying on traditional PHP or Twig files to generate our pages.
+	I want to make this clear distinction that whilst WordPress is great for a large portion of general client sites and handling of data.
+
+    We are not going to be solely relying on traditional PHP or Twig files to generate our pages.
+
 </Notes>
 
 ---
@@ -162,53 +163,50 @@ Even better, it's completely free to get started with hosting static sites, it'l
 
 ---
 
-## So…
-
 ### Backend
 
 - WordPress
-
 - Headless WordPress
-
 - Gutenberg
-
 - ACF
 
 ### Frontend
 
 - React
-
 - Styled Components
-
 - Gatsby
-
 - Netlify
 
 ---
 
-## Still with me? 😅
+## Still With Me? 😅
 
 Don't be put off!
 
 I know we've covered a few different technologies, but this talk is a step by step process.
 
-if you have any questions throughout the talk, I'll be taking a 2-minute break to answer questions on the backend and then a couple of minutes in the end to discuss the complete walkthrough.
+<Notes>
+	if you have any questions throughout the talk, I'll be taking a 2-minute break
+	to answer questions on the backend and then a couple of minutes in the end to
+	discuss the complete walkthrough.
+</Notes>
 
 ---
 
-## My prefered way of learning/teaching
-
-Before we get building, I just want to touch on the explination process.
-
-I am a man that learns best by seeing and then doing.
-
-Talking about concepts without visuals is a big no-no, so you'll have plenty of visual aids along the talk.
+## Let's Go!
 
 ---
 
 ## Queue Flashback
 
-https://youtu.be/oA-mHFPfDlQ
+<iframe
+	width="940"
+	height="540"
+	src="https://www.youtube.com/embed/oA-mHFPfDlQ"
+	frameborder="0"
+	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+	allowfullscreen
+/>
 
 ---
 
@@ -225,10 +223,6 @@ I thought this would be a great excuse to tidy up my MVP version of my website, 
 
 ---
 
-## Let's Go!
-
----
-
 ## Designs
 
 I'm a big fan of atomic design, for anyone unfamiliar, atomic design is a concept of looking at pages and slicing them into smaller and smaller components.
@@ -242,46 +236,25 @@ I'm a big fan of atomic design, for anyone unfamiliar, atomic design is a concep
 
 ## Homepage
 
-<Image src="assets/images/homepage.png" size="1000px" />
+---
+
+<Image src="assets/images/homepage.png" size="800px" />
 
 ---
 
 ## Homepage - Disected
 
-<Image src="assets/images/homepage-components.png" size="1000px" />
+---
+
+<Image src="assets/images/homepage-components.jpg" size="800px" />
 
 ---
 
-### Organisms
-
-- Header
-
-- Hero
-
-### Molecules
-
-- Navigation List
-
-### Atoms
-
-- Colours
-
-- Fonts
-
-- Logo
-
-- Headings, subheadings, text
+## We'll Only Be Focussing on The Hero
 
 ---
 
-## Services Page
-
-<Image src="assets/images/services.png" size="1000px" />
-
-<Notes>
-	I didn't split this design up, but the main component we will be focusing on
-	later is the row component
-</Notes>
+<Image src="assets/images/hero.gif" size="800px" />
 
 ---
 
@@ -303,9 +276,12 @@ My WordPress environment is hosted at [https://wjhm.noface.app](https://wjhm.nof
 
 The only plugin we need to follow this process is ACF 5.8.0 Beta 3.0
 
+<Notes>
 Installing Beta 4.0 introduces breaking changes to how repeater fields are displayed later on.
 
 When ACF 5.8.0 gets an official release I'll work on tweaking the process.
+
+</Notes>
 
 ---
 
@@ -325,13 +301,17 @@ When ACF 5.8.0 gets an official release I'll work on tweaking the process.
 
 To kickstart the WordPress theme, I've downloaded and installed the Timber Starter Theme.
 
-I've made a few alterations to the code but we'll dive into that in a moment.
-
 Feel free to download my theme repository as a starting point and alter as you need to - [https://github.com/whatjackhasmade/WJHM-Wordpress-Theme](https://github.com/whatjackhasmade/WJHM-Wordpress-Theme)
+
+<Notes>
+	I've made a few alterations to the code but we'll dive into that in a moment.
+</Notes>
 
 ---
 
 ## WordPress Theme Structure
+
+---
 
 <Image src="assets/images/theme-structure.png" size="500px" />
 
@@ -344,17 +324,17 @@ The only alterations you will need to make is in how we register our Gutenberg b
 
 ---
 
-## Registering our components directory for Timber
+## Removing Front-End Theme Files
 
-The timber starter theme by default assumes we'll be using their components directory setup, but I prefer to structure mine atomically.
-
-This step is again totally optional, but I'm disclaiming it for anyone following this presentation along later on.
+To keep focus on a Headless WordPress build, I have for this project scraped all twig file templates and their components.
 
 ---
 
 ## WordPress Posts and Pages - WP Admin
 
-aa
+---
+
+<Image src="assets/images/posts.png" size="500px" />
 
 ---
 
@@ -366,7 +346,7 @@ aa
 
 ## What we actually have
 
-What we actually have -[ https://wjhm.noface.app/wp-json/wp/v2/posts/](https://wjhm.noface.app/wp-json/wp/v2/posts/)
+What we actually have - [https://wjhm.noface.app/wp-json/wp/v2/posts/](https://wjhm.noface.app/wp-json/wp/v2/posts/)
 
 <Notes>
 But what the heck is all of this?
@@ -377,13 +357,16 @@ These are REST API endpoints which allow for Create, Read, Update and Delete (CR
 
 ---
 
-## WordPress REST API - 4.7.0
+## WordPress REST API
 
 Support for the WordPress REST API has been part of the project's core since version 4.7.0.
 
+<Notes>
 It opens doors as front-end frameworks are exploding in popularity.
 
 You can now adopt WordPress to work fairly seamlessly with any of your preferred development workflows.
+
+</Notes>
 
 ---
 
@@ -391,11 +374,14 @@ You can now adopt WordPress to work fairly seamlessly with any of your preferred
 
 So this is where the concept of headless WordPress comes into play.
 
-We are using WordPress as a content management system without a front-end.
+We are using WordPress as a content management system only.
 
+<Notes>
 Displaying data that we can digest in whatever language we want.
 
 As long as it accepts JSON!
+
+</Notes>
 
 ---
 
@@ -409,10 +395,31 @@ However, there are a few issues I have with the endpoints
 
 ## Issues with the existing API
 
-- Bloat - They were built to include as many use cases as possible, as a result, it is bloated with meta information I don't need
-- Limitations - You are limited to 100 results per page (I have over 200+ blogs I want to query without passing in several endpoints)
-- Missing Data - I would love to get access to some ACF or Yoast SEO information from the endpoints but these are currently setup without plugins in mind
-- Great for setting HTML - Not for generating
+### Bloated
+
+The endpoints were built to include as many use cases as possible, as a result, it is bloated with meta information I don't need
+
+---
+
+## Issues with the existing API
+
+### Limitations
+
+You are limited to 100 results per page (I have over 200+ blogs I want to query without passing in several endpoints)
+
+---
+
+## Issues with the existing API
+
+### Missing Data
+
+I would love to get access to some ACF or Yoast SEO information from the endpoints but these are currently setup without plugins in mind
+
+---
+
+## Issues with the existing API
+
+Great for setting HTML - Not for generating
 
 ---
 
@@ -433,27 +440,40 @@ That being said, I'll give you a quick overview.
 
 ## Creating Our Endpoints
 
+FUNCTIONS.php
+
 ---
 
-## Querying with our endpoints
+## Custom Endpoints ❤
 
-Old Endpoint -[ https://wjhm.noface.app/wp-json/wp/v2/posts/](https://wjhm.noface.app/wp-json/wp/v2/posts/)
+Old Endpoint - [https://wjhm.noface.app/wp-json/wp/v2/posts/](https://wjhm.noface.app/wp-json/wp/v2/posts/)
 
 Our Endpoint - [https://wjhm.noface.app/wp-json/posts/v2/all](https://wjhm.noface.app/wp-json/posts/v2/all)
 
 ---
 
-## Now we have our endpoints, let's create some content
+## Now we have our endpoints
+
+## Let's create some content
 
 ---
 
-## First, let's disable the defaults that Gutenberg is giving us
+## Gutenberg - Disable Defaults
+
+First, let's disable the defaults that Gutenberg is giving us
+
+---
+
+## Gutenberg - Disable Defaults
 
 Disable-Gutenberg.php
 
+<Notes>
 With this code, we are essentially saying to Gutenberg, only display the blocks with these names.
 
 Of course, the blocks haven't been created yet but this is to give you an idea of the blocks you'll need to add later.
+
+</Notes>
 
 ---
 
@@ -461,28 +481,25 @@ Of course, the blocks haven't been created yet but this is to give you an idea o
 
 Now before we go ahead and develop a building block, let's first pick the block we want to build and break it down.
 
----
-
-## Extracting a component
-
-_Screenshot of hero_
-
-One of my favourite components for a website is a hero component.
+One of my favourite components for a website is a hero component, so let's stick with that.
 
 ---
 
-### Create anatomy of data
+### Atoms That Create The Hero
 
-From this component, we have a few parts of data that will be required from the end user.
+In the hero component we have a few parts of data that will be editable.
 
 - Background Colour
 - Subheading
 - Heading
 - Paragraph
 
+<Notes>
 Now the list could continue with data such as height, font-size, text colour, etc.
 
 But I don't want all of those things to be fluid, I only want the text and background colour to be customisable on a per hero basis.
+
+</Notes>
 
 ---
 
@@ -497,11 +514,14 @@ To simplify the block even further, as I am the only content editor, I am going 
 
 ## Register the block in functions.php
 
-Now the register block documentation is still a WIP and I expect there to be updates in the coming months by Elliot (ACF Founder).
-
 The current documentation can be found at - [https://www.advancedcustomfields.com/resources/acf_register_block/](https://www.advancedcustomfields.com/resources/acf_register_block/)
 
 With Timber documentation on 'acf_register_block' found at - [https://timber.github.io/docs/guides/gutenberg/](https://timber.github.io/docs/guides/gutenberg/)
+
+<Notes>
+	Now the register block documentation is still a WIP and I expect there to be
+	updates in the coming months by Elliot (ACF Founder).
+</Notes>
 
 ---
 
@@ -515,15 +535,20 @@ Include code snippet for registering block
 
 Optionally, as you may have noticed when registering the hero block, we can render a .twig file with the contents of the fields.
 
+<Notes>
 I HIGHLY recommend including this for a clients site, as it will give them immediate previews of what the new content will include on the final site.
 
 Otherwise you'll get confused clients asking why Jack has asked you to make a white screen.
+
+</Notes>
 
 ---
 
 ## Register the block in ACF
 
-Insert screenshots of registering in ACF
+---
+
+<Image src="assets/images/acf-block-fields.png" size="500px" />
 
 ---
 
@@ -531,7 +556,9 @@ Insert screenshots of registering in ACF
 
 Quick protip, if you are an ACF Pro plugin user, creating a folder named 'acf-json' in your theme directory will save any configurations of your custom field groups to the theme.
 
-This is great when working locally and then deploying via version control.
+<Notes>
+	This is great when working locally and then deploying via version control.
+</Notes>
 
 ---
 
@@ -543,17 +570,32 @@ Then I simply sync the ACF changes on the live site to grab the fields it expect
 
 ---
 
-## Demo the component
+<Image src="assets/images/acf-fields-sync.png" size="500px" />
 
+---
+
+## The Hero Component in Gutenberg
+
+---
+
+<Image src="assets/images/acf-hero-block.png" size="500px" />
+
+<Notes>
 This is what we are left with, a new Hero block component.
 
 The layout is a bit hit and miss depending on what fields you include and how many you include, but it's a great start for ACF and registering blocks!
 
+</Notes>
+
 ---
 
-## Magic
+## Magic 🧝‍
 
-It's like magic, and even if you aren't interested in React, Gatsby or new frameworks, this is something to get excited about for all your WordPress projects
+It's like magic
+
+This is something to get excited about for all your WordPress projects
+
+Even if you aren't interested in React, Gatsby or the front-end portion of this presentation.
 
 ---
 
@@ -563,7 +605,11 @@ We've registered our custom block and it renders nicely in our backend.
 
 The only issue is that the block doesn't solve the problem I have when it comes to pages.
 
-The blocks are great at generating HTML in our endpoints, but I don't want to generate HTML, I want to generate HTML and CSS in our React application.
+---
+
+## So far so good?
+
+The blocks are great at generating HTML in our endpoints, but I don't want that, I want to generate HTML and CSS in our React application.
 
 I want the endpoints to act as a list of ingredients, not cook the meal.
 
@@ -573,9 +619,12 @@ I want the endpoints to act as a list of ingredients, not cook the meal.
 
 Posts-gutenberg-problem.json
 
+<Notes>
 This is fine for posts as I don't want to be creating blocks for a blog post.
 
 But when creating pages, I want full access to the blocks properties to use them as props in React.
+
+</Notes>
 
 ---
 
@@ -597,13 +646,13 @@ For the most part, I've forgotten how they even work and would greatly appreciat
 
 ---
 
-## Converting the content to JSON objects
+## Converting the Content to JSON objects
 
 Include code example of convert_content
 
 ---
 
-## Our new content and how it fits the purpose we want it for
+## Our New Content
 
 Include page insights JSON
 
@@ -614,11 +663,11 @@ Include page insights JSON
 
 ---
 
-## WHEW - Backend complete
+## WHEW - Backend Complete
 
 ---
 
-## Take 2 minutes for Questions, interrogations, heckling
+## Time to Take 2 minutes for Questions or Heckling
 
 <Notes>
 Grab yourselves some water, have a toilet break if you want
