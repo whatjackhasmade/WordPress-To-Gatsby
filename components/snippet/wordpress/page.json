@@ -1,0 +1,14 @@
+{
+	"content": [
+		{
+			"id": "block_5c9791f4dc943",
+			"data": {
+				"content": "<h1>Insights</h1>",
+				"background_colour": "#0652DD"
+			},
+			"name": "acf/hero",
+			"align": "full",
+			"mode": "edit"
+		}
+	]
+}

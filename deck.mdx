@@ -2,10 +2,20 @@ import { Image, Head, Notes } from "mdx-deck";
 
 export { default as theme } from "./theme.js";
 
-import ConvertContent from "./components/snippet/convert-content.js";
-import DisableGutenberg from "./components/snippet/disable-gutenberg.js";
-import RegisterHero from "./components/snippet/register-hero.js";
-import RestPosts from "./components/snippet/rest-posts.js";
+import { CodeSurfer } from "mdx-deck-code-surfer";
+
+import {
+	ConvertContent,
+	DisableGutenberg,
+	RegisterHero,
+	RestAction,
+	RestPosts,
+	PluginWordPress,
+	PluginWordPressGenerate,
+	Hero,
+	Page,
+	Parser
+} from "./components/Snippets.js";
 
 <Head>
 	<title>WordPress to Gatsby</title>
@@ -209,9 +219,9 @@ I know we've covered a few different technologies, but this talk is a step by st
 	width="940"
 	height="540"
 	src="https://www.youtube.com/embed/oA-mHFPfDlQ"
-	frameborder="0"
+	frameBorder="0"
 	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-	allowfullscreen
+	allowFullScreen
 />
 
 ---
@@ -340,7 +350,7 @@ To keep focus on a Headless WordPress build, I have for this project scraped all
 
 ---
 
-<Image src="assets/images/posts.png" size="500px" />
+<img src="assets/images/posts.png" width="1400px" />
 
 ---
 
@@ -444,7 +454,70 @@ That being said, I'll give you a quick overview.
 
 ---
 
-<RestPosts />
+<CodeSurfer
+	title="Creating our WordPress Posts Endpoint"
+	code={RestAction}
+	lang="php"
+	steps={[
+		{
+			notes: "Before we generate our API data, we need to register the endpoint"
+		},
+		{
+			lines: [3],
+			notes: "First we hook into the 'rest_api_init' hook"
+		},
+		{
+			lines: [4, 5],
+			notes:
+				"Next we register the route, this will be our slug for the endpoint"
+		},
+		{
+			lines: [6],
+			notes: "As Gatsby will only be importing data, we set the method to GET"
+		},
+		{
+			lines: [7],
+			notes: "The callback function we'll be defining in the next slide"
+		},
+		{
+			range: [8, 14],
+			notes:
+				"Finally, we can accept some arguments, in my own setups I will use a slug parameter for specific page/post querying"
+		},
+		{
+			notes:
+				"and there's our endpoint generated at - https://wjhm.noface.app/wp-json/posts/v2/all"
+		}
+	]}
+/>
+
+---
+
+<CodeSurfer
+	title="Creating our Endpoint Content"
+	code={RestPosts}
+	lang="php"
+	steps={[
+		{
+			notes:
+				"We're going to create the callback function we just mentioned for our rest endpoint"
+		},
+		{
+			range: [1, 11],
+			notes:
+				"The function will kick off with a WP Query for all published posts"
+		},
+		{
+			range: [11, 41],
+			notes:
+				"If the loop returns any results, we'll add them to an array of insights/posts"
+		},
+		{
+			range: [41, 44],
+			notes: "We'll then return the array of posts at the end of the function"
+		}
+	]}
+/>
 
 ---
 
@@ -468,9 +541,11 @@ First, let's disable the defaults that Gutenberg is giving us
 
 ---
 
-## Gutenberg - Disable Defaults
-
-<DisableGutenberg />
+<CodeSurfer
+	title="Gutenberg - Disable Defaults"
+	code={DisableGutenberg}
+	lang="php"
+/>
 
 <Notes>
 With this code, we are essentially saying to Gutenberg, only display the blocks with these names.
@@ -486,6 +561,10 @@ Of course, the blocks haven't been created yet but this is to give you an idea o
 Now before we go ahead and develop a building block, let's first pick the block we want to build and break it down.
 
 One of my favourite components for a website is a hero component, so let's stick with that.
+
+---
+
+<Image src="assets/images/homepage-components.jpg" size="800px" />
 
 ---
 
@@ -529,9 +608,41 @@ With Timber documentation on 'acf_register_block' found at - [https://timber.git
 
 ---
 
-## Register the block in functions.php
-
-Include code snippet for registering block
+<CodeSurfer
+	title="Register the block in functions.php"
+	code={RegisterHero}
+	lang="php"
+	steps={[
+		{
+			notes: "I'll briefly go through my register blocks function"
+		},
+		{
+			range: [1, 4],
+			notes: "First we check the function exists from ACF"
+		},
+		{
+			range: [6, 8],
+			notes:
+				"I then create an array for the block names, the icons I want to display in Gutenberg in relation to the block and then merge the arrays"
+		},
+		{
+			range: [10, 22],
+			notes: "For each available block, we call the acf_register_block function"
+		},
+		{
+			lines: [16],
+			notes: "Note the render callback function"
+		},
+		{
+			range: [24, 31],
+			notes: "The callback function is then rendered on a per block basis"
+		},
+		{
+			notes:
+				"The callback function could be reduced to one flexible callback function but for now it works"
+		}
+	]}
+/>
 
 ---
 
@@ -552,7 +663,7 @@ Otherwise you'll get confused clients asking why Jack has asked you to make a wh
 
 ---
 
-<Image src="assets/images/acf-block-fields.png" size="500px" />
+<img src="assets/images/acf-block-fields.png" width="1500px" />
 
 ---
 
@@ -574,7 +685,7 @@ Then I simply sync the ACF changes on the live site to grab the fields it expect
 
 ---
 
-<Image src="assets/images/acf-fields-sync.png" size="500px" />
+<img src="assets/images/acf-fields-sync.png" width="1200px" />
 
 ---
 
@@ -582,7 +693,7 @@ Then I simply sync the ACF changes on the live site to grab the fields it expect
 
 ---
 
-<Image src="assets/images/acf-hero-block.png" size="500px" />
+<img src="assets/images/acf-hero-block.png" width="1200px" />
 
 <Notes>
 This is what we are left with, a new Hero block component.
@@ -657,9 +768,9 @@ But when creating pages, I want full access to the blocks properties to use them
 ```
 
 <Notes>
-This is fine for posts as I don't want to be creating blocks for a blog post.
+This is what I'd like in an ideal world.
 
-But when creating pages, I want full access to the blocks properties to use them as props in React.
+An array of gutenblocks and their properties.
 
 </Notes>
 
@@ -687,9 +798,11 @@ I've created the following PHP functional files -
 
 ---
 
-## Converting the Content to JSON objects
-
-<ConvertContent />
+<CodeSurfer
+	title="Converting the Content to JSON objects"
+	code={ConvertContent}
+	lang="php"
+/>
 
 ---
 
@@ -804,63 +917,10 @@ There are existing plugins for WordPress data, but I prefer to create my own.
 
 ---
 
-## Creating our WordPress plugin
-
-```
-const fetch = require("node-fetch");
-const queryString = require("query-string");
-const crypto = require("crypto");
-const path = require("path");
-
-exports.sourceNodes = async (
-	{ actions: { createNode }, createNodeId },
-	{ plugins, ...options }
-) => {
-	const pagesURL = `https://wjhm.noface.app/wp-json/pages/v2/all`;
-	const pagesResponse = await fetch(pagesURL);
-	const pagesData = await pagesResponse.json();
-
-	pagesData.forEach(e => {
-		createNode({
-			...e,
-			id: createNodeId(`page-${e.id}`),
-			parent: null,
-			children: [],
-			internal: {
-				type: "Page",
-				content: JSON.stringify(e),
-				contentDigest: crypto
-					.createHash("md5")
-					.update(JSON.stringify(e))
-					.digest("hex")
-			}
-		});
-	});
-
----
-
-    const postsURL = `https://wjhm.noface.app/wp-json/posts/v2/all`;
-    const postsResponse = await fetch(postsURL);
-    const postsData = await postsResponse.json();
-
-    postsData.forEach(e => {
-    	createNode({
-    		...e,
-    		id: createNodeId(`post-${e.id}`),
-    		parent: null,
-    		children: [],
-    		internal: {
-    			type: "Post",
-    			content: JSON.stringify(e),
-    			contentDigest: crypto
-    				.createHash("md5")
-    				.update(JSON.stringify(e))
-    				.digest("hex")
-    		}
-    	});
-    });
-
-```
+<CodeSurfer
+	title="Creating our Gatsby WordPress plugin"
+	code={PluginWordPress}
+/>
 
 ---
 
@@ -949,7 +1009,10 @@ We'll be skipping that and instead auto generating the pages based on the JSON a
 
 ---
 
-plugin-wordpress-generate.js
+<CodeSurfer
+	title="Generating Pages With Our Gatsby Plugin"
+	code={PluginWordPressGenerate}
+/>
 
 ---
 
@@ -959,9 +1022,7 @@ With the auto generating of the pages, we are passing the data values into the p
 
 ---
 
-## Accessing the data via props
-
-Page.jsx
+<CodeSurfer title="Accessing the data via props" code={Page} />
 
 ---
 
@@ -991,9 +1052,7 @@ To process the data we need to write some functions which check what type of blo
 
 ---
 
-## ACFParser block
-
-Parser.jsx
+<CodeSurfer title="ACFParser block" code={Parser} />
 
 ---
 
@@ -1003,9 +1062,7 @@ If the parser detects the name `acf/hero` which we have in our endpoint then it 
 
 ---
 
-## Our Hero Component
-
-Hero.jsx
+<CodeSurfer title="Our Hero Component" code={Hero} />
 
 ---
 
@@ -1026,7 +1083,7 @@ All that is left now is to start creating content in WordPress to be digested by
 
 ---
 
-<Image src="assets/images/wordpress-create.png" size="1200px" />
+<img src="assets/images/wordpress-create.png" width="1200px" />
 
 ---
 
@@ -1085,9 +1142,9 @@ So now we have a static site being generated. It's time to get this bad boy live
 	width="940"
 	height="540"
 	src="https://www.youtube.com/embed/4IkOesUILhs"
-	frameborder="0"
+	frameBorder="0"
 	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-	allowfullscreen
+	allowFullScreen
 />
 
 ---
@@ -1110,8 +1167,4 @@ Thanks for letting me ramble, there may be a few points I had to trim out for th
 - whatjackhasmade on all socials
 - whatjackhasmade.co.uk
 - noface.co.uk
-- NoFace is my company
-
-```
-
-```
+- NoFace
