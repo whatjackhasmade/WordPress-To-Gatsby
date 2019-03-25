@@ -1,7 +1,11 @@
 import { Image, Head, Notes } from "mdx-deck";
-export { components } from "mdx-deck-code-surfer";
 
 export { default as theme } from "./theme.js";
+
+import ConvertContent from "./components/snippet/convert-content.js";
+import DisableGutenberg from "./components/snippet/disable-gutenberg.js";
+import RegisterHero from "./components/snippet/register-hero.js";
+import RestPosts from "./components/snippet/rest-posts.js";
 
 <Head>
 	<title>WordPress to Gatsby</title>
@@ -440,27 +444,7 @@ That being said, I'll give you a quick overview.
 
 ---
 
-## Creating Our Endpoints
-
-```java FizzBuzz
-public String fizzBuzz(int n){
-  String s = "";
-  if (n == 0)
-    return s;
-  if((n % 5) == 0)
-    s = "Buzz" + s;
-  if((n % 3) == 0)
-    s = "Fizz" + s;
-  if (s.equals(""))
-    s = n + "";
-  return fizzBuzz(n-1) +  s;
-}
-----
-* > Copy pasted from rosettacode.org
-1, 3 > Some lines
-1:4, 6, 8:10 > Also ranges
-2, 4[1:6], 5[2, 4, 6:9] > Some tokens
-```
+<RestPosts />
 
 ---
 
@@ -486,7 +470,7 @@ First, let's disable the defaults that Gutenberg is giving us
 
 ## Gutenberg - Disable Defaults
 
-Disable-Gutenberg.php
+<DisableGutenberg />
 
 <Notes>
 With this code, we are essentially saying to Gutenberg, only display the blocks with these names.
@@ -637,7 +621,40 @@ I want the endpoints to act as a list of ingredients, not cook the meal.
 
 ## Post JSON vs. Page JSON
 
-Posts-gutenberg-problem.json
+```
+{
+	"content": "<!-- wp:core/paragraph --> Ah, Gutenberg, for those of you who are only familiar with the German blacksmith Johannes Gutenberg, I hate to be the bearer of bad news, but this post isn't based on the invention of the printing press in 1440. <!-- /wp:core/paragraph -->"
+}
+```
+
+<Notes>
+This is fine for posts as I don't want to be creating blocks for a blog post.
+
+But when creating pages, I want full access to the blocks properties to use them as props in React.
+
+</Notes>
+
+---
+
+## Post JSON vs. Page JSON
+
+```
+{
+	"content": [
+		{
+			"id": "block_5c9791f4dc943",
+			"data": {
+				"content": "<h1>Insights</h1>",
+				"background_colour": "#0652DD"
+			},
+			"name": "acf/hero",
+			"align": "full",
+			"mode": "edit"
+		}
+	]
+}
+
+```
 
 <Notes>
 This is fine for posts as I don't want to be creating blocks for a blog post.
@@ -656,25 +673,45 @@ I'm not a PHP developer, I know how to achieve what I want, but it's not pretty 
 
 ## Converting the content to JSON objects
 
-I've created the following PHP fucntional files -
+I've created the following PHP functional files -
 
 - get-acf-images.php
 - get-acf-titles.php
 - convert-the-content.php
 
-For the most part, I've forgotten how they even work and would greatly appreciate any pull requests to my theme repository so I can improve my understanding of this area in the development process.
+<Notes>
+	For the most part, I've forgotten how they even work and would greatly
+	appreciate any pull requests to my theme repository so I can improve my
+	understanding of this area in the development process.
+</Notes>
 
 ---
 
 ## Converting the Content to JSON objects
 
-Include code example of convert_content
+<ConvertContent />
 
 ---
 
 ## Our New Content
 
-Include page insights JSON
+```
+{
+	"content": [
+		{
+			"id": "block_5c9791f4dc943",
+			"data": {
+				"content": "<h1>Insights</h1>",
+				"background_colour": "#0652DD"
+			},
+			"name": "acf/hero",
+			"align": "full",
+			"mode": "edit"
+		}
+	]
+}
+
+```
 
 <Notes>
 	The new content is a structured JSON object with the name of the block, and

@@ -1,7 +1,0 @@
-{
-	"content": "<!-- wp:core/paragraph --> Ah, Gutenberg, for those of you who are only familiar with the German blacksmith <a href='https://en.wikipedia.org/wiki/Johannes_Gutenberg'>Johannes Gutenberg</a>, I hate to be the bearer of bad news, but this post isn't based on the invention of the printing press in 1440. <!-- /wp:core/paragraph --> <!-- wp:core/image {'id':2447} --> <figure class='wp-block-image'><img src='https://wjhm.noface.app/wp-content/uploads/2017/09/Gutenberg-WordPress-Editor.jpg' /></figure> <!-- /wp:core/image --> <!-- wp:core/paragraph --> Gutenberg is a new content editor that has emerged into the WordPress CMS (Content Management System), that has divided the community more so than the debate of whether pineapple should be allowed on pizza! <!-- /wp:core/paragraph -->",
-	"date": "2017-09-14T18:27:15+00:00",
-	"id": 2387,
-	"slug": "what-is-gutenberg",
-	"title": "What is Gutenberg?"
-}
