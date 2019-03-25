@@ -11,16 +11,15 @@
 		"help": "mdx-deck"
 	},
 	"keywords": [],
-	"author": "Brent Jackson",
+	"author": "Jack Pritchard",
 	"license": "MIT",
-	"devDependencies": {
+	"name": "gatsby-to-wordpress",
+	"dependencies": {
 		"mdx-deck": "^1.10.0",
 		"mdx-deck-code-surfer": "^0.5.5",
-		"raw-loader": "^2.0.0"
-	},
-	"name": "my-presentation-name",
-	"dependencies": {
+		"raw-loader": "^2.0.0",
 		"react": "^16.8.4",
+		"react-highlight": "^0.12.0",
 		"styled-components": "^4.1.3"
 	}
 }
