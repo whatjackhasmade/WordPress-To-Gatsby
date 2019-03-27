@@ -27,25 +27,4 @@ exports.sourceNodes = async (
 			}
 		});
 	});
-
-	const postsURL = `https://wjhm.noface.app/wp-json/posts/v2/all`;
-	const postsResponse = await fetch(postsURL);
-	const postsData = await postsResponse.json();
-
-	postsData.forEach(e => {
-		createNode({
-			...e,
-			id: createNodeId(`post-${e.id}`),
-			parent: null,
-			children: [],
-			internal: {
-				type: "Post",
-				content: JSON.stringify(e),
-				contentDigest: crypto
-					.createHash("md5")
-					.update(JSON.stringify(e))
-					.digest("hex")
-			}
-		});
-	});
 };

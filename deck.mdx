@@ -126,7 +126,10 @@ ACF is a must have for any developer looking to improve their themes.
 
 ACF allows developers to add custom fields (who'd have thought?) to posts and pages on a WordPress site.
 
-Not only this but as of ACF 5.8.0 (We are using a beta build) you can now attach custom fields to Gutenberg blocks.
+<Notes>
+	Not only this but as of ACF 5.8.0 (We are using a beta build) you can now
+	attach custom fields to Gutenberg blocks.
+</Notes>
 
 ---
 
@@ -140,7 +143,10 @@ React is a popular javascript framework, often compared to Vue and Angular.
 
 The concept in React is to create files as 'Components' and then import them into one another when required.
 
-The syntax is at first intimidating but you will build pages with HTML, JavaScript and CSS (Another hot debate).
+<Notes>
+	The syntax is at first intimidating but you will build pages with HTML,
+	JavaScript and CSS (Another hot debate).
+</Notes>
 
 ---
 
@@ -148,9 +154,12 @@ The syntax is at first intimidating but you will build pages with HTML, JavaScri
 
 Styled Components is a node package you can import into React that will allow you to define your CSS/SCSS within a component file.
 
+<Notes>
 Essentially allowing you to keep all code related to a component in one neat file.
 
 As well as this, any data your component has access to, you can pass into styled components to render new CSS on the fly.
+
+</Notes>
 
 ---
 
@@ -292,6 +301,7 @@ When ACF 5.8.0 gets an official release I'll work on tweaking the process.
 
 - ACF 5.8.0 Beta 3.0
 - Enhanced Media Library
+- JAMstack Deployments
 - Timber
 - TinyPNG
 - WP Migrate DB Pro
@@ -573,7 +583,7 @@ But I don't want all of those things to be fluid, I only want the text and backg
 
 ---
 
-### Create anatomy of data
+### Mapping the anatomy of the Hero
 
 To simplify the block even further, as I am the only content editor, I am going to make the hero component require two fields.
 
@@ -633,9 +643,25 @@ With Timber documentation on 'acf_register_block' found at - [https://timber.git
 
 ---
 
-## Creating the twig file (optional)
+## Register the block in ACF
 
-Optionally, as you may have noticed when registering the hero block, we can render a .twig file with the contents of the fields.
+---
+
+<img src="assets/images/acf-block-fields.png" width="1500px" />
+
+---
+
+## Creating The Twig File
+
+As you may have noticed when registering the hero block, we can render a .twig file with the contents of the fields.
+
+```
+<section class="hero" style="background-color: {{fields.background_colour}};">
+	<div className="hero__wrapper">
+		{{fields.content}}
+	</div>
+</section>
+```
 
 <Notes>
 I HIGHLY recommend including this for a clients site, as it will give them immediate previews of what the new content will include on the final site.
@@ -646,14 +672,6 @@ Otherwise you'll get confused clients asking why Jack has asked you to make a wh
 
 ---
 
-## Register the block in ACF
-
----
-
-<img src="assets/images/acf-block-fields.png" width="1500px" />
-
----
-
 ## Protip: acf-json folder
 
 Quick protip, if you are an ACF Pro plugin user, creating a folder named 'acf-json' in your theme directory will save any configurations of your custom field groups to the theme.
@@ -661,6 +679,10 @@ Quick protip, if you are an ACF Pro plugin user, creating a folder named 'acf-js
 <Notes>
 	This is great when working locally and then deploying via version control.
 </Notes>
+
+---
+
+<img src="assets/images/acf-json.png" width="1100px" />
 
 ---
 
@@ -680,7 +702,7 @@ Then I simply sync the ACF changes on the live site to grab the fields it expect
 
 ---
 
-<img src="assets/images/acf-hero-block.png" width="1200px" />
+<img src="assets/images/acf-hero-block-content.png" width="1200px" />
 
 <Notes>
 This is what we are left with, a new Hero block component.
@@ -688,6 +710,10 @@ This is what we are left with, a new Hero block component.
 The layout is a bit hit and miss depending on what fields you include and how many you include, but it's a great start for ACF and registering blocks!
 
 </Notes>
+
+---
+
+<img src="assets/images/acf-hero-block.png" width="1200px" />
 
 ---
 
@@ -721,7 +747,7 @@ I want the endpoints to act as a list of ingredients, not cook the meal.
 
 ```
 {
-	"content": "<!-- wp:core/paragraph --> Ah, Gutenberg, for those of you who are only familiar with the German blacksmith Johannes Gutenberg, I hate to be the bearer of bad news, but this post isn't based on the invention of the printing press in 1440. <!-- /wp:core/paragraph -->"
+	"content": "<!-- wp:acf/hero {"id":"block_5c9791d20f725","data":{"field_5c97908ba2089":"\u003ch4\u003eAward-winning website developer\u003c/h4\u003e\r\n\u003ch1\u003eJack Pritchard\u003c/h1\u003e\r\n\u003cp\u003eMy primary focus is website development, specifically front-end web technologies and implementing the latest frameworks to create bespoke solutions to solve business problems.\u003c/p\u003e\r\n\u003cp\u003eI have experience in HTML, CSS, SCSS, JavaScript, jQuery, React, PHP, WordPress, Gatsby.\u003c/p\u003e\r\n\u003cp\u003eHeck, this site is built with most of those!\u003c/p\u003e","field_5c979098a208a":"#0652DD","field_5c9bc20dc99d0":"2626"},"name":"acf/hero","align":"full","mode":"edit"} /-->
 }
 ```
 
@@ -738,16 +764,17 @@ But when creating pages, I want full access to the blocks properties to use them
 
 ```
 {
-	"content": [
+	content: [
 		{
-			"id": "block_5c9791f4dc943",
-			"data": {
-				"content": "<h1>Insights</h1>",
-				"background_colour": "#0652DD"
+			id: "block_5c9791d20f725",
+			data: {
+				content: "<h4>Award-winning website developer</h4> <h1>Jack Pritchard</h1> <p>My primary focus is website development, specifically front-end web technologies and implementing the latest frameworks to create bespoke solutions to solve business problems.</p> <p>I have experience in HTML, CSS, SCSS, JavaScript, jQuery, React, PHP, WordPress, Gatsby.</p> <p>Heck, this site is built with most of those!</p>",
+				background_colour: "#0652DD",
+				media: "http://local-whatjackhasmade.co.uk/wp-content/uploads/2019/03/32146178558_7371681145_o-e1553721252283.jpg"
 			},
-			"name": "acf/hero",
-			"align": "full",
-			"mode": "edit"
+			name: "acf/hero",
+			align: "full",
+			mode: "edit"
 		}
 	]
 }
@@ -789,6 +816,47 @@ I've created the following PHP functional files -
 	title="Converting the Content to JSON objects"
 	code={ConvertContent}
 	lang="php"
+	steps={[
+		{
+			notes:
+				"Again, I welcome contributions but this is my string to object converter"
+		},
+		{
+			range: [4, 11],
+			notes:
+				"I'm essentially find and replace searching for any comment code or absolute paths"
+		},
+		{
+			range: [4, 11],
+			notes:
+				"Then I am splitting the string up using the placements of commas between the string objects"
+		},
+		{
+			lines: [13],
+			notes:
+				"When we have our objects, I am then wrapping them in an array. You can think of this as an array of block components"
+		},
+		{
+			lines: [15],
+			notes:
+				"Next I am converting the field ID's their respective names (Background Colour, Content, etc.)"
+		},
+		{
+			range: [16, 19],
+			notes:
+				"The converting continues with replacing the original IDs in the object with the found names"
+		},
+		{
+			lines: [21],
+			notes:
+				"Finally I believe I've started to make progress on converting images from their IDs to their full size URL"
+		},
+		{
+			lines: [21],
+			notes:
+				"The next step to figure out is how I can return an object of the image at different crop sizes"
+		}
+	]}
 />
 
 ---
@@ -797,16 +865,17 @@ I've created the following PHP functional files -
 
 ```
 {
-	"content": [
+	content: [
 		{
-			"id": "block_5c9791f4dc943",
-			"data": {
-				"content": "<h1>Insights</h1>",
-				"background_colour": "#0652DD"
+			id: "block_5c9791d20f725",
+			data: {
+				content: "<h4>Award-winning website developer</h4> <h1>Jack Pritchard</h1> <p>My primary focus is website development, specifically front-end web technologies and implementing the latest frameworks to create bespoke solutions to solve business problems.</p> <p>I have experience in HTML, CSS, SCSS, JavaScript, jQuery, React, PHP, WordPress, Gatsby.</p> <p>Heck, this site is built with most of those!</p>",
+				background_colour: "#0652DD",
+				media: "http://local-whatjackhasmade.co.uk/wp-content/uploads/2019/03/32146178558_7371681145_o-e1553721252283.jpg"
 			},
-			"name": "acf/hero",
-			"align": "full",
-			"mode": "edit"
+			name: "acf/hero",
+			align: "full",
+			mode: "edit"
 		}
 	]
 }
@@ -907,6 +976,31 @@ There are existing plugins for WordPress data, but I prefer to create my own.
 <CodeSurfer
 	title="Creating our Gatsby WordPress plugin"
 	code={PluginWordPress}
+	steps={[
+		{
+			notes: ""
+		},
+		{
+			range: [1, 4],
+			notes:
+				"First I've imported a few NPM packages to help with handling any data"
+		},
+		{
+			range: [6, 9],
+			notes:
+				"We kick things off with a function which Gatsby provides us for generating data, accessible via Gatsby"
+		},
+		{
+			range: [10, 12],
+			notes:
+				"As a source of data, I am using my WordPress endpoint and performing a fetch request to pull down the JSON"
+		},
+		{
+			range: [14, 30],
+			notes:
+				"When the data is available, we are then processing the data as 'nodes' in gatsby"
+		}
+	]}
 />
 
 ---
