@@ -6,6 +6,8 @@ import { CodeSurfer } from "mdx-deck-code-surfer";
 import shadesOfPurple from "prism-react-renderer/themes/shadesOfPurple";
 
 import {
+	acfJSON,
+	blockJSON,
 	ConvertContent,
 	DisableGutenberg,
 	HeroTwig,
@@ -663,12 +665,7 @@ As you may have noticed when registering the hero block, we can render a .twig f
 
 ---
 
-<CodeSurfer
-	theme={shadesOfPurple}
-	title="Creating The Twig File"
-	code={HeroTwig}
-	lang="twig"
-/>
+<CodeSurfer theme={shadesOfPurple} code={HeroTwig} lang="twig" />
 
 <Notes>
 I HIGHLY recommend including this for a clients site, as it will give them immediate previews of what the new content will include on the final site.
@@ -750,13 +747,12 @@ I want the endpoints to act as a list of ingredients, not cook the meal.
 
 ---
 
-## Post JSON vs. Page JSON
-
-```
-{
-	"content": "<!-- wp:acf/hero {"id":"block_5c9791d20f725","data":{"field_5c97908ba2089":"\u003ch4\u003eAward-winning website developer\u003c/h4\u003e\r\n\u003ch1\u003eJack Pritchard\u003c/h1\u003e\r\n\u003cp\u003eMy primary focus is website development, specifically front-end web technologies and implementing the latest frameworks to create bespoke solutions to solve business problems.\u003c/p\u003e\r\n\u003cp\u003eI have experience in HTML, CSS, SCSS, JavaScript, jQuery, React, PHP, WordPress, Gatsby.\u003c/p\u003e\r\n\u003cp\u003eHeck, this site is built with most of those!\u003c/p\u003e","field_5c979098a208a":"#0652DD","field_5c9bc20dc99d0":"2626"},"name":"acf/hero","align":"full","mode":"edit"} /-->
-}
-```
+<CodeSurfer
+	title="Post JSON vs. Page JSON"
+	theme={shadesOfPurple}
+	code={acfJSON}
+	lang="json"
+/>
 
 <Notes>
 This is fine for posts as I don't want to be creating blocks for a blog post.
@@ -767,26 +763,12 @@ But when creating pages, I want full access to the blocks properties to use them
 
 ---
 
-## Post JSON vs. Page JSON
-
-```
-{
-	content: [
-		{
-			id: "block_5c9791d20f725",
-			data: {
-				content: "<h4>Award-winning website developer</h4> <h1>Jack Pritchard</h1> <p>My primary focus is website development, specifically front-end web technologies and implementing the latest frameworks to create bespoke solutions to solve business problems.</p> <p>I have experience in HTML, CSS, SCSS, JavaScript, jQuery, React, PHP, WordPress, Gatsby.</p> <p>Heck, this site is built with most of those!</p>",
-				background_colour: "#0652DD",
-				media: "http://local-whatjackhasmade.co.uk/wp-content/uploads/2019/03/32146178558_7371681145_o-e1553721252283.jpg"
-			},
-			name: "acf/hero",
-			align: "full",
-			mode: "edit"
-		}
-	]
-}
-
-```
+<CodeSurfer
+	title="Post JSON vs. Page JSON"
+	theme={shadesOfPurple}
+	code={blockJSON}
+	lang="json"
+/>
 
 <Notes>
 This is what I'd like in an ideal world.
@@ -869,26 +851,12 @@ I've created the following PHP functional files -
 
 ---
 
-## Our New Content
-
-```
-{
-	content: [
-		{
-			id: "block_5c9791d20f725",
-			data: {
-				content: "<h4>Award-winning website developer</h4> <h1>Jack Pritchard</h1> <p>My primary focus is website development, specifically front-end web technologies and implementing the latest frameworks to create bespoke solutions to solve business problems.</p> <p>I have experience in HTML, CSS, SCSS, JavaScript, jQuery, React, PHP, WordPress, Gatsby.</p> <p>Heck, this site is built with most of those!</p>",
-				background_colour: "#0652DD",
-				media: "http://local-whatjackhasmade.co.uk/wp-content/uploads/2019/03/32146178558_7371681145_o-e1553721252283.jpg"
-			},
-			name: "acf/hero",
-			align: "full",
-			mode: "edit"
-		}
-	]
-}
-
-```
+<CodeSurfer
+	title="Our New Content"
+	theme={shadesOfPurple}
+	code={blockJSON}
+	lang="json"
+/>
 
 <Notes>
 	The new content is a structured JSON object with the name of the block, and

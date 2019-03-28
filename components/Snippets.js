@@ -1,3 +1,6 @@
+const acfJSON = require("!raw-loader!./snippet/json/acf-block.snippet");
+const blockJSON = require("!raw-loader!./snippet/json/block.snippet");
+
 const ConvertContent = require("!raw-loader!./snippet/wordpress/convert.php");
 const DisableGutenberg = require("!raw-loader!./snippet/wordpress/disable.php");
 const HeroTwig = require("!raw-loader!./snippet/wordpress/hero.twig");
@@ -13,6 +16,9 @@ const Page = require("!raw-loader!./snippet/gatsby/page.jsx");
 const Parser = require("!raw-loader!./snippet/gatsby/parser.jsx");
 
 module.exports = {
+	acfJSON: acfJSON.default,
+	blockJSON: blockJSON.default,
+
 	ConvertContent: ConvertContent.default,
 	DisableGutenberg: DisableGutenberg.default,
 	HeroTwig: HeroTwig.default,
