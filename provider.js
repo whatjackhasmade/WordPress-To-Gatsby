@@ -12,7 +12,7 @@ export default class Provider extends Component {
 			<ThemeProvider {...rest}>
 				{children}
 
-				<Status index={index} />
+				{/* <Status index={index} /> */}
 				<Footer />
 			</ThemeProvider>
 		);

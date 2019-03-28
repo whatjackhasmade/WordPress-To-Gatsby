@@ -12,9 +12,6 @@ exports.createPages = ({ graphql, actions }) => {
 								data {
 									background_colour
 									content
-									rows {
-										column
-									}
 								}
 								mode
 								name
@@ -34,17 +31,6 @@ exports.createPages = ({ graphql, actions }) => {
 								slug
 								title
 							}
-						}
-					}
-				}
-				allPost {
-					edges {
-						node {
-							content
-							id
-							imageFull
-							slug
-							title
 						}
 					}
 				}
@@ -68,19 +54,6 @@ exports.createPages = ({ graphql, actions }) => {
 						slug: node.slug,
 						title: node.title,
 						yoast: node.yoast
-					}
-				});
-			});
-			result.data.allPost.edges.forEach(({ node }) => {
-				createPage({
-					path: node.slug,
-					component: path.resolve(`./src/components/templates/Post.jsx`),
-					context: {
-						content: node.content,
-						id: node.id,
-						image: node.imageFull,
-						title: node.title,
-						slug: node.slug
 					}
 				});
 			});

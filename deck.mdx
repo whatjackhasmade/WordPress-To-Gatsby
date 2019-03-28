@@ -973,6 +973,12 @@ There are existing plugins for WordPress data, but I prefer to create my own.
 
 ---
 
+## Creating our Gatsby WordPress plugin
+
+<img src="assets/images/gatsby-plugin.png" width="500px" />
+
+---
+
 <CodeSurfer
 	title="Creating our Gatsby WordPress plugin"
 	code={PluginWordPress}
@@ -1002,6 +1008,22 @@ There are existing plugins for WordPress data, but I prefer to create my own.
 		}
 	]}
 />
+
+---
+
+## Loading the Plugin
+
+### gatsby-config.js
+
+```
+module.exports = {
+	plugins: [
+		{
+			resolve: "gatsby-source-wordpress"
+		}
+	]
+};
+```
 
 ---
 
@@ -1061,7 +1083,7 @@ I prefer to use a tool called GraphQL Playground as it has a dark mode which hel
 ```
 
 {
-	allPost {
+	allPage {
 		edges {
 			node {
 				id
@@ -1093,30 +1115,61 @@ We'll be skipping that and instead auto generating the pages based on the JSON a
 <CodeSurfer
 	title="Generating Pages With Our Gatsby Plugin"
 	code={PluginWordPressGenerate}
+	steps={[
+		{
+			notes: ""
+		},
+		{
+			range: [1, 4],
+			notes:
+				"First we tap in to Gatsby's createPages function and create a GraphQL promise"
+		},
+		{
+			range: [5, 37],
+			notes:
+				"Within the GraphQL promise, we create a query to expose all the data available via our Gatsby plugin"
+		},
+		{
+			range: [5, 37],
+			notes:
+				"Before writing a query here, I'd highly recommend testing it at http://localhost:8000/___graphql"
+		},
+		{
+			range: [38, 62],
+			notes:
+				"After the query, we are then looping over each page we find and using the createPage function"
+		},
+		{
+			range: [38, 62],
+			notes:
+				"Creating the page this way, allows us to access the data as props later on"
+		}
+	]}
 />
 
 ---
 
-## Auto-generate pages with JSON and GraphQL
-
-With the auto generating of the pages, we are passing the data values into the page and that data is accessible with something called 'props' in React.
-
----
-
-<CodeSurfer title="Accessing the data via props" code={Page} />
-
----
-
-## Accessing the data via props
-
-So now that pages are rendering with the template Page.jsx
-
-We have access to the data we have specified in our plugin available to the template as a prop.
-
-<Notes>
-	The main data we want to access is the page content as that is our Gutenberg
-	blocks layout object.
-</Notes>
+<CodeSurfer
+	title="Accessing the data via props"
+	code={Page}
+	steps={[
+		{
+			range: [1, 3],
+			notes:
+				"The page template first imports React and some components I've created to assist with generating the page"
+		},
+		{
+			lines: [7],
+			notes:
+				"Here I am destructuring the 'content' property from the context we defined in the previous slide"
+		},
+		{
+			range: [9, 13],
+			notes:
+				"I then return the page in a Base wrapper with my global styles and pass the content data into a block parser"
+		}
+	]}
+/>
 
 ---
 
@@ -1133,7 +1186,36 @@ To process the data we need to write some functions which check what type of blo
 
 ---
 
-<CodeSurfer title="ACFParser block" code={Parser} />
+<CodeSurfer
+	title="ACFParser block"
+	code={Parser}
+	steps={[
+		{
+			range: [1, 3],
+			notes:
+				"The ACF Parser component first imports React and the hero component"
+		},
+		{
+			range: [7, 14],
+			notes: "I then check that the data is valid and has properties to parse"
+		},
+		{
+			range: [15, 22],
+			notes:
+				"If there is valid data, I then create an array of the page's components"
+		},
+		{
+			range: [23, 36],
+			notes:
+				"I then loop over the array and if the block object has a name which matches a component I've created"
+		},
+		{
+			range: [23, 36],
+			notes:
+				"I return the component and pass specific data to the component to use in the render method"
+		}
+	]}
+/>
 
 ---
 
@@ -1143,18 +1225,45 @@ If the parser detects the name `acf/hero` which we have in our endpoint then it 
 
 ---
 
-<CodeSurfer title="Our Hero Component" code={Hero} />
-
----
-
-## Our Hero Component
-
-Our Hero component will have access to any data we pass in via the ACFParser.
+<CodeSurfer
+	title="Our Hero Component"
+	code={Hero}
+	steps={[
+		{
+			range: [1, 2],
+			notes: "To kick things off, we import React and Styled-Components"
+		},
+		{
+			range: [11, 13],
+			notes:
+				"Within the component rendering, we are then destructuring the data we passed in from ACFParser"
+		},
+		{
+			range: [15, 24],
+			notes:
+				"Then we return the HeroComponent constant with the content we've passed down"
+		},
+		{
+			range: [4, 8],
+			notes:
+				"Next I define a constant for the HeroComponent element, which uses the properties we've just passed in the render method"
+		},
+		{
+			range: [4, 8],
+			notes:
+				"If no background data is passed, we fallback to the hex colour blue"
+		}
+	]}
+/>
 
 <Notes>
 	The two data fields we are importing are the background colour of the hero,
 	and the WYSIWYG content.
 </Notes>
+
+---
+
+<img src="assets/images/hero-blue.png" width="1200px" />
 
 ---
 
@@ -1233,6 +1342,16 @@ So now we have a static site being generated. It's time to get this bad boy live
 # 👋
 
 ## Hello World
+
+---
+
+## Generate on Content Changes
+
+https://github.com/crgeary/wp-jamstack-deployments
+
+---
+
+<Image src="assets/images/wordpress-jam-plugin.png" size="1000px" />
 
 ---
 
