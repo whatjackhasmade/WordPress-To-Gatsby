@@ -1,8 +1,9 @@
-import { Image, Head, Notes } from "mdx-deck";
+import { Head, Notes } from "mdx-deck";
 
 export { default as theme } from "./theme.js";
 
 import { CodeSurfer } from "mdx-deck-code-surfer";
+import nightOwl from "prism-react-renderer/themes/nightOwl";
 
 import {
 	ConvertContent,
@@ -250,7 +251,7 @@ I'm a big fan of atomic design, for anyone unfamiliar, atomic design is a concep
 
 ---
 
-<Image src="assets/images/homepage.png" size="800px" />
+<img src="assets/images/homepage.png" width="800px" />
 
 ---
 
@@ -258,7 +259,7 @@ I'm a big fan of atomic design, for anyone unfamiliar, atomic design is a concep
 
 ---
 
-<Image src="assets/images/homepage-components.jpg" size="800px" />
+<img src="assets/images/homepage-components.jpg" width="800px" />
 
 ---
 
@@ -266,7 +267,7 @@ I'm a big fan of atomic design, for anyone unfamiliar, atomic design is a concep
 
 ---
 
-<Image src="assets/images/hero.gif" size="800px" />
+<img src="assets/images/hero.gif" width="800px" />
 
 ---
 
@@ -326,7 +327,7 @@ Feel free to download my theme repository as a starting point and alter as you n
 
 ---
 
-<Image src="assets/images/theme-structure.png" size="500px" />
+<img src="assets/images/theme-structure.png" width="500px" />
 
 <Notes>
 So far the setup is pretty standard, if you are unfamiliar with Timber, then you should in theory be able to do this without Timber.
@@ -452,6 +453,7 @@ That being said, I'll give you a quick overview.
 ---
 
 <CodeSurfer
+	theme={nightOwl}
 	title="Creating our WordPress Posts Endpoint"
 	code={RestAction}
 	lang="php"
@@ -491,6 +493,7 @@ That being said, I'll give you a quick overview.
 ---
 
 <CodeSurfer
+	theme={nightOwl}
 	title="Creating our Endpoint Content"
 	code={RestPosts}
 	lang="php"
@@ -539,6 +542,7 @@ First, let's disable the defaults that Gutenberg is giving us
 ---
 
 <CodeSurfer
+	theme={nightOwl}
 	title="Gutenberg - Disable Defaults"
 	code={DisableGutenberg}
 	lang="php"
@@ -561,7 +565,7 @@ One of my favourite components for a website is a hero component, so let's stick
 
 ---
 
-<Image src="assets/images/homepage-components.jpg" size="800px" />
+<img src="assets/images/homepage-components.jpg" width="800px" />
 
 ---
 
@@ -606,6 +610,7 @@ With Timber documentation on 'acf_register_block' found at - [https://timber.git
 ---
 
 <CodeSurfer
+	theme={nightOwl}
 	title="Register the block in functions.php"
 	code={RegisterHero}
 	lang="php"
@@ -813,6 +818,7 @@ I've created the following PHP functional files -
 ---
 
 <CodeSurfer
+	theme={nightOwl}
 	title="Converting the Content to JSON objects"
 	code={ConvertContent}
 	lang="php"
@@ -980,6 +986,7 @@ There are existing plugins for WordPress data, but I prefer to create my own.
 ---
 
 <CodeSurfer
+	theme={nightOwl}
 	title="Creating our Gatsby WordPress plugin"
 	code={PluginWordPress}
 	steps={[
@@ -1038,7 +1045,7 @@ To run the site, you'll need to have terminal access to the Gatsby root folder a
 
 ---
 
-<Image src="assets/images/yarn-run-dev.png" size="700px" />
+<img src="assets/images/yarn-run-dev.png" width="700px" />
 
 ---
 
@@ -1068,7 +1075,7 @@ I prefer to use a tool called GraphQL Playground as it has a dark mode which hel
 
 ---
 
-<Image src="assets/images/graphql-playground.png" size="700px" />
+<img src="assets/images/graphql-playground.png" width="700px" />
 
 ---
 
@@ -1076,7 +1083,7 @@ I prefer to use a tool called GraphQL Playground as it has a dark mode which hel
 
 ---
 
-<Image src="assets/images/graphql-playground-query.png" size="1200px" />
+<img src="assets/images/graphql-playground-query.png" width="1200px" />
 
 ---
 
@@ -1113,6 +1120,7 @@ We'll be skipping that and instead auto generating the pages based on the JSON a
 ---
 
 <CodeSurfer
+	theme={nightOwl}
 	title="Generating Pages With Our Gatsby Plugin"
 	code={PluginWordPressGenerate}
 	steps={[
@@ -1150,6 +1158,7 @@ We'll be skipping that and instead auto generating the pages based on the JSON a
 ---
 
 <CodeSurfer
+	theme={nightOwl}
 	title="Accessing the data via props"
 	code={Page}
 	steps={[
@@ -1187,6 +1196,7 @@ To process the data we need to write some functions which check what type of blo
 ---
 
 <CodeSurfer
+	theme={nightOwl}
 	title="ACFParser block"
 	code={Parser}
 	steps={[
@@ -1226,6 +1236,7 @@ If the parser detects the name `acf/hero` which we have in our endpoint then it 
 ---
 
 <CodeSurfer
+	theme={nightOwl}
 	title="Our Hero Component"
 	code={Hero}
 	steps={[
@@ -1298,7 +1309,7 @@ Simply changing the background colour value in WordPress means that we have upda
 
 ---
 
-<Image src="assets/images/wordpress-create-hero-red.png" size="1200px" />
+<img src="assets/images/wordpress-create-hero-red.png" width="1200px" />
 
 ---
 
@@ -1351,7 +1362,7 @@ https://github.com/crgeary/wp-jamstack-deployments
 
 ---
 
-<Image src="assets/images/wordpress-jam-plugin.png" size="1000px" />
+<img src="assets/images/wordpress-jam-plugin.png" width="1000px" />
 
 ---
 
