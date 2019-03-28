@@ -14,6 +14,7 @@ import {
 	RegisterHero,
 	RestAction,
 	RestPosts,
+	LoadPlugin,
 	PluginWordPress,
 	PluginWordPressGenerate,
 	Hero,
@@ -988,19 +989,17 @@ There are existing plugins for WordPress data, but I prefer to create my own.
 
 ---
 
-## Loading the Plugin
-
-### gatsby-config.js
-
-```
-module.exports = {
-	plugins: [
+<CodeSurfer
+	title="Loading the Plugin"
+	theme={shadesOfPurple}
+	code={LoadPlugin}
+	lang="javascript"
+	steps={[
 		{
-			resolve: "gatsby-source-wordpress"
+			notes: "gatsby-config.js"
 		}
-	]
-};
-```
+	]}
+/>
 
 ---
 

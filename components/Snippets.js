@@ -8,6 +8,7 @@ const RegisterHero = require("!raw-loader!./snippet/wordpress/register.php");
 const RestAction = require("!raw-loader!./snippet/wordpress/rest-action.php");
 const RestPosts = require("!raw-loader!./snippet/wordpress/rest.php");
 
+const LoadPlugin = require("!raw-loader!./snippet/gatsby/LoadPlugin.js");
 const PluginWordPress = require("!raw-loader!./snippet/gatsby/plugin-wordpress.js");
 const PluginWordPressGenerate = require("!raw-loader!./snippet/gatsby/plugin-wordpress-generate.js");
 
@@ -26,6 +27,7 @@ module.exports = {
 	RestAction: RestAction.default,
 	RestPosts: RestPosts.default,
 
+	LoadPlugin: LoadPlugin.default,
 	PluginWordPress: PluginWordPress.default,
 	PluginWordPressGenerate: PluginWordPressGenerate.default,
 
