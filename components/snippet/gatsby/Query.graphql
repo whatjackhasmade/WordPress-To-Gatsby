@@ -3,7 +3,7 @@
 		edges {
 			node {
 				id
-				date
+				slug
 				title
 			}
 		}
