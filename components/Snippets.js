@@ -1,5 +1,6 @@
 const ConvertContent = require("!raw-loader!./snippet/wordpress/convert.php");
 const DisableGutenberg = require("!raw-loader!./snippet/wordpress/disable.php");
+const HeroTwig = require("!raw-loader!./snippet/wordpress/hero.twig");
 const RegisterHero = require("!raw-loader!./snippet/wordpress/register.php");
 const RestAction = require("!raw-loader!./snippet/wordpress/rest-action.php");
 const RestPosts = require("!raw-loader!./snippet/wordpress/rest.php");
@@ -14,6 +15,7 @@ const Parser = require("!raw-loader!./snippet/gatsby/parser.jsx");
 module.exports = {
 	ConvertContent: ConvertContent.default,
 	DisableGutenberg: DisableGutenberg.default,
+	HeroTwig: HeroTwig.default,
 	RegisterHero: RegisterHero.default,
 	RestAction: RestAction.default,
 	RestPosts: RestPosts.default,

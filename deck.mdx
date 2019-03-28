@@ -3,11 +3,12 @@ import { Head, Notes } from "mdx-deck";
 export { default as theme } from "./theme.js";
 
 import { CodeSurfer } from "mdx-deck-code-surfer";
-import nightOwl from "prism-react-renderer/themes/nightOwl";
+import shadesOfPurple from "prism-react-renderer/themes/shadesOfPurple";
 
 import {
 	ConvertContent,
 	DisableGutenberg,
+	HeroTwig,
 	RegisterHero,
 	RestAction,
 	RestPosts,
@@ -453,7 +454,7 @@ That being said, I'll give you a quick overview.
 ---
 
 <CodeSurfer
-	theme={nightOwl}
+	theme={shadesOfPurple}
 	title="Creating our WordPress Posts Endpoint"
 	code={RestAction}
 	lang="php"
@@ -493,7 +494,7 @@ That being said, I'll give you a quick overview.
 ---
 
 <CodeSurfer
-	theme={nightOwl}
+	theme={shadesOfPurple}
 	title="Creating our Endpoint Content"
 	code={RestPosts}
 	lang="php"
@@ -542,7 +543,7 @@ First, let's disable the defaults that Gutenberg is giving us
 ---
 
 <CodeSurfer
-	theme={nightOwl}
+	theme={shadesOfPurple}
 	title="Gutenberg - Disable Defaults"
 	code={DisableGutenberg}
 	lang="php"
@@ -610,7 +611,7 @@ With Timber documentation on 'acf_register_block' found at - [https://timber.git
 ---
 
 <CodeSurfer
-	theme={nightOwl}
+	theme={shadesOfPurple}
 	title="Register the block in functions.php"
 	code={RegisterHero}
 	lang="php"
@@ -660,13 +661,14 @@ With Timber documentation on 'acf_register_block' found at - [https://timber.git
 
 As you may have noticed when registering the hero block, we can render a .twig file with the contents of the fields.
 
-```
-<section class="hero" style="background-color: {{fields.background_colour}};">
-	<div className="hero__wrapper">
-		{{fields.content}}
-	</div>
-</section>
-```
+---
+
+<CodeSurfer
+	theme={shadesOfPurple}
+	title="Creating The Twig File"
+	code={HeroTwig}
+	lang="twig"
+/>
 
 <Notes>
 I HIGHLY recommend including this for a clients site, as it will give them immediate previews of what the new content will include on the final site.
@@ -818,7 +820,7 @@ I've created the following PHP functional files -
 ---
 
 <CodeSurfer
-	theme={nightOwl}
+	theme={shadesOfPurple}
 	title="Converting the Content to JSON objects"
 	code={ConvertContent}
 	lang="php"
@@ -986,7 +988,7 @@ There are existing plugins for WordPress data, but I prefer to create my own.
 ---
 
 <CodeSurfer
-	theme={nightOwl}
+	theme={shadesOfPurple}
 	title="Creating our Gatsby WordPress plugin"
 	code={PluginWordPress}
 	steps={[
@@ -1120,7 +1122,7 @@ We'll be skipping that and instead auto generating the pages based on the JSON a
 ---
 
 <CodeSurfer
-	theme={nightOwl}
+	theme={shadesOfPurple}
 	title="Generating Pages With Our Gatsby Plugin"
 	code={PluginWordPressGenerate}
 	steps={[
@@ -1158,7 +1160,7 @@ We'll be skipping that and instead auto generating the pages based on the JSON a
 ---
 
 <CodeSurfer
-	theme={nightOwl}
+	theme={shadesOfPurple}
 	title="Accessing the data via props"
 	code={Page}
 	steps={[
@@ -1196,7 +1198,7 @@ To process the data we need to write some functions which check what type of blo
 ---
 
 <CodeSurfer
-	theme={nightOwl}
+	theme={shadesOfPurple}
 	title="ACFParser block"
 	code={Parser}
 	steps={[
@@ -1236,7 +1238,7 @@ If the parser detects the name `acf/hero` which we have in our endpoint then it 
 ---
 
 <CodeSurfer
-	theme={nightOwl}
+	theme={shadesOfPurple}
 	title="Our Hero Component"
 	code={Hero}
 	steps={[
