@@ -11,6 +11,7 @@ const RestPosts = require("!raw-loader!./snippet/wordpress/rest.php");
 const LoadPlugin = require("!raw-loader!./snippet/gatsby/LoadPlugin.js");
 const PluginWordPress = require("!raw-loader!./snippet/gatsby/plugin-wordpress.js");
 const PluginWordPressGenerate = require("!raw-loader!./snippet/gatsby/plugin-wordpress-generate.js");
+const QueryGraphQL = require("!raw-loader!./snippet/gatsby/Query.graphql");
 
 const Hero = require("!raw-loader!./snippet/gatsby/hero.jsx");
 const Page = require("!raw-loader!./snippet/gatsby/page.jsx");
@@ -30,6 +31,7 @@ module.exports = {
 	LoadPlugin: LoadPlugin.default,
 	PluginWordPress: PluginWordPress.default,
 	PluginWordPressGenerate: PluginWordPressGenerate.default,
+	QueryGraphQL: QueryGraphQL.default,
 
 	Hero: Hero.default,
 	Page: Page.default,

@@ -17,6 +17,7 @@ import {
 	LoadPlugin,
 	PluginWordPress,
 	PluginWordPressGenerate,
+	QueryGraphQL,
 	Hero,
 	Page,
 	Parser
@@ -1056,21 +1057,12 @@ I prefer to use a tool called GraphQL Playground as it has a dark mode which hel
 
 ---
 
-```
-
-{
-	allPage {
-		edges {
-			node {
-				id
-				date
-				title
-			}
-		}
-	}
-}
-
-```
+<CodeSurfer
+	title="Querying Our Nodes"
+	theme={shadesOfPurple}
+	code={QueryGraphQL}
+	lang="graphql"
+/>
 
 ---
 
