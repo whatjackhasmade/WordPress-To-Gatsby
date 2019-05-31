@@ -2,44 +2,25 @@ import React, { Component } from "react";
 
 import Hero from "../organisms/hero/Hero";
 
-export default class CreateMarkup extends Component {
-	render() {
-		const { content } = this.props;
+const components = {
+	hero: Hero
+};
 
-		if (
-			content &&
-			content[0] &&
-			content[0].hasOwnProperty("data") &&
-			content[0].data !== null
-		) {
-			let componentsArray = [];
-			let newArrayDataOfOjbect = Object.values(content);
+function CreateMarkup({ content }) {
+	let content = this.props.content;
 
-			for (var key in newArrayDataOfOjbect) {
-				if (newArrayDataOfOjbect.hasOwnProperty(key))
-					componentsArray.push(newArrayDataOfOjbect[key]);
-			}
-
-			const pageComponents = componentsArray.map((component, index) => {
-				if (component.name === `acf/hero`) {
-					return (
-						<Hero
-							id={component.id}
-							index={index}
-							key={component.id}
-							name={component.name}
-							data={component.data}
-						/>
-					);
-				}
-				return null;
-			});
-
-			if (pageComponents) {
-				return pageComponents;
-			}
-		} else {
-			return null;
+	if (content && content[0]) {
+		content = content.filter(block => block.blockName !== null);
+		const pageComponents = content.map((component, index) => {
+			const Component = components[component.blockName.substr(4)];
+			return <Component index={index} data={component.attrs.data} />;
+		});
+		if (pageComponents) {
+			return pageComponents;
 		}
+	} else {
+		return null;
 	}
 }
+
+export default CreateMarkup;

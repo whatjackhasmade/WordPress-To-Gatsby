@@ -41,7 +41,7 @@ import {
 
 ## Shameless Plug
 
-### Taking on projects for summer 2019
+### Taking on projects for Autumn 2019
 
 I focus on front-end applications and have experience with React, NextJS, Gatsby, WordPress, Timber, and most of the related frameworks.
 
@@ -291,7 +291,7 @@ My WordPress environment is hosted at [https://wjhm.noface.app](https://wjhm.nof
 
 ## WordPress Plugins - Minimum Requirements
 
-The only plugin we need to follow this process is ACF 5.8.0 Beta 3.0
+The only plugin we need to follow this process is ACF 5.8.0
 
 <Notes>
 Installing Beta 4.0 introduces breaking changes to how repeater fields are output in my process.
@@ -304,7 +304,7 @@ When ACF 5.8.0 gets an official release I'll work on tweaking the process.
 
 ## WordPress plugins - My Setup
 
-- ACF 5.8.0 Beta 3.0
+- ACF 5.8.0
 - Enhanced Media Library
 - JAMstack Deployments
 - Timber
@@ -778,12 +778,6 @@ An array of gutenblocks and their properties.
 
 ---
 
-## Confession
-
-I'm not a PHP developer, I know how to achieve what I want, but it's not pretty with my skill level of PHP.
-
----
-
 ## Converting the content to JSON objects
 
 I've created the following PHP functional files -
@@ -808,42 +802,22 @@ I've created the following PHP functional files -
 	steps={[
 		{
 			notes:
-				"Again, I welcome contributions but this is my string to object converter"
+				"To convert the blocks into usable JSON, I rely on some custom functions and new WP functions"
 		},
 		{
-			range: [4, 11],
+			range: [4, 5],
 			notes:
-				"I'm essentially find and replace searching for any comment code or absolute paths"
+				"I am first replacing any absolute URL paths in my API to return relative paths"
 		},
 		{
-			range: [4, 11],
+			range: [6, 13],
 			notes:
-				"Then I am splitting the string up using the placements of commas between the string objects"
+				"To get the ACF images from their IDs and return ACF titles I am using custom functions I've developed"
 		},
 		{
-			lines: [13],
+			range: [14, 16],
 			notes:
-				"When we have our objects, I am then wrapping them in an array. You can think of this as an array of block components"
-		},
-		{
-			lines: [15],
-			notes:
-				"Next I am converting the field ID's their respective names (Background Colour, Content, etc.)"
-		},
-		{
-			range: [16, 19],
-			notes:
-				"The converting continues with replacing the original IDs in the object with the found names"
-		},
-		{
-			lines: [21],
-			notes:
-				"Finally I believe I've started to make progress on converting images from their IDs to their full size URL"
-		},
-		{
-			lines: [21],
-			notes:
-				"The next step to figure out is how I can return an object of the image at different crop sizes"
+				"Finally I am using a new functoin parse_blocks to process the block string and returning it as an array of objects"
 		}
 	]}
 />
@@ -1164,23 +1138,18 @@ To process the data we need to write some functions which check what type of blo
 				"The ACF Parser component first imports React and the hero component"
 		},
 		{
-			range: [7, 14],
-			notes: "I then check that the data is valid and has properties to parse"
+			range: [5, 7],
+			notes:
+				"I then create a new object which holds a key assigned to the Hero component"
 		},
 		{
-			range: [15, 22],
+			range: [9, 26],
 			notes:
-				"If there is valid data, I then create an array of the page's components"
+				"The CreateMarkup component imports the JSON block data and loops over each block available"
 		},
 		{
-			range: [23, 36],
-			notes:
-				"I then loop over the array and if the block object has a name which matches a component I've created"
-		},
-		{
-			range: [23, 36],
-			notes:
-				"I return the component and pass specific data to the component to use in the render method"
+			range: [9, 26],
+			notes: "If there's a match we return the component with the block data"
 		}
 	]}
 />
