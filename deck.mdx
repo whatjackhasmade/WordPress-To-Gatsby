@@ -1,4 +1,5 @@
 import { Head, Notes } from "mdx-deck";
+import { Styled } from "styled-components";
 
 export { default as theme } from "./theme.js";
 
@@ -23,19 +24,23 @@ import {
 	Parser
 } from "./components/Snippets.js";
 
+import Avatar from "./components/Avatar.js";
+import FullImage from "./components/FullImage.js";
+import Video from "./components/Video.js";
+
 <Head>
 	<title>WordPress to Gatsby</title>
 </Head>
 
-# WordPress to Gatsby
+<FullImage src="assets/images/intro.jpg" />
 
 ---
+
+<Avatar src="assets/images/me.jpg" height="400px" width="400px" />
 
 ## Jack Pritchard
 
 ### Freelance Fullstack Website Developer
-
-🏄‍ Most of the time you'll find me surfing the world wide web
 
 ---
 
@@ -43,23 +48,25 @@ import {
 
 ### Taking on projects for Autumn 2019
 
-I focus on front-end applications and have experience with React, NextJS, Gatsby, WordPress, Timber, and most of the related frameworks.
+I focus on front-end applications and have experience with -
 
-🚀 I have an obsession to make web products faster.
-
----
-
-## Back To The Talk Jack 👀
+- React
+- NextJS
+- Gatsby
+- WordPress
+- Timber
 
 ---
 
 ## WordPress to Gatsby
 
-This presentation is a step by step process on how I have imported my WordPress website data to one of the most popular static site generator, Gatsby.
+In this presentation I hope to show you the power of Gatsby, before creating a bridge between dependable development tools, processes and frameworks like WordPress.
 
 ---
 
-## The Final Product
+## Before We Get Started!
+
+### The Final Product
 
 ---
 
@@ -67,13 +74,90 @@ This presentation is a step by step process on how I have imported my WordPress 
 
 ---
 
-## Before We Get Started!
+## Gatsby
 
-### Let us Define Some of the Technologies Being Used
+"Gatsby is a free and open source framework based on React that helps developers build blazing fast websites and apps"
+
+---
+
+<Video src="assets/videos/gatsby.mp4" />
+
+---
+
+## Modern web tech without the headache
+
+Enjoy the power of the latest web technologies – React.js , Webpack , modern JavaScript and CSS and more — all set up and waiting for you to start building.
+
+---
+
+## Bring your own data
+
+Gatsby’s rich data plugin ecosystem lets you build sites with the data you want — from one or many sources: Pull data from headless CMSs, SaaS services, APIs, databases, your file system, and more directly into your pages using GraphQL .
+
+---
+
+## Scale to the entire internet
+
+Forget complicated deploys with databases and servers and their expensive, time-consuming setup costs, maintenance, and scaling fears. Gatsby.js builds your site as “static” files which can be deployed easily on dozens of services.
+
+---
+
+## Future-proof your website
+
+Do not build a website with last decade’s tech. The future of the web is mobile, JavaScript and APIs—the JAMstack. Every website is a web app and every web app is a website.
+
+---
+
+## Speed past the competition
+
+Instead of waiting to generate pages when requested, pre-build pages and lift them into a global cloud of servers — ready to be delivered instantly to your users.
+
+---
+
+## My Favourite Benefits of Gatsby
+
+- Hot reloading
+- Enables an offline first approach
+- No need for heavy queries
+- No need for server queries
+- Console warnings as you develop, to encourage best practices
+- Incredibly quick products
+
+---
+
+## Traditional server vs Gatsby (JAM)
+
+<img src="assets/images/jam-stack.jpg" width="1000px" />
+
+---
+
+## Gatsby Showcase
+
+<img src="assets/images/showcase.jpg" width="1400px" />
+
+---
+
+## Gatsby Plugins
+
+<img src="assets/images/plugins.png" width="1400px" />
+
+---
+
+## Sold Yet?
+
+(Gatsby I'll happily take any sponsorship at this point)
+
+---
+
+# Let's Build a Site 🔨
 
 ---
 
 # Our Backend 🍑
+
+---
+
+<FullImage src="assets/images/full-wordpress.png" />
 
 ---
 
@@ -83,12 +167,28 @@ I assume many of you in the room know what WordPress is.
 
 However, for those who need a recap, WordPress is an open source CMS (Content Management System).
 
-Super popular, and used in a large portion of all sites on the web.
-
 <Notes>
 	Some crazy figure like WordPress runs 32% of the entire internet is often
 	thrown around.
 </Notes>
+
+---
+
+## Gutenberg
+
+For anyone using WordPress, I assume you know what Gutenberg is; For better or for worse.
+
+Gutenberg is now the default content editor for WordPress.
+
+---
+
+## WordPress - Gutenberg
+
+<img src="assets/images/wordpress-editing.png" width="1000px" />
+
+---
+
+<FullImage src="assets/images/full-headless.png" />
 
 ---
 
@@ -108,18 +208,19 @@ Essentially using WordPress as only a backend.
 
 ---
 
-## Gutenberg
+## Headless WordPress Endpoint
 
-For anyone using WordPress, I assume you know what Gutenberg is.
-
-For better or for worse.
-
-Gutenberg is the default content editor for WordPress as of 5.0.0
+What we have in all WordPress setups (as of release 4.7.0+) - [https://wjhm.noface.app/wp-json/wp/v2/posts/](https://wjhm.noface.app/wp-json/wp/v2/posts/)
 
 <Notes>
-I know it has its issues.
 
-However, I think the block building experience is here to stay.
+But what the heck is all of this?
+
+These are REST API endpoints which allow for Create, Read, Update and Delete (CRUD) functions to your WordPress setup.
+
+It opens doors as front-end frameworks are exploding in popularity.
+
+You can now adopt WordPress to work fairly seamlessly with any of your preferred development workflows.
 
 </Notes>
 
@@ -127,93 +228,30 @@ However, I think the block building experience is here to stay.
 
 ## Advanced Custom Fields (ACF)
 
-ACF is a must have for any developer looking to improve their themes.
+---
+
+## Advanced Custom Fields (ACF)
+
+ACF is a must have for any WordPress developer looking to improve their themes.
 
 ACF allows developers to add custom fields (who'd have thought?) to posts and pages on a WordPress site.
 
 <Notes>
-	Not only this but as of ACF 5.8.0 (We are using a beta build) you can now
-	attach custom fields to Gutenberg blocks.
+	Not only this but as of ACF 5.8.0 you can now define and attach custom fields
+	to Gutenberg blocks using ACF.
 </Notes>
 
 ---
 
-# Our Frontend 🎨
+## That's All of Our Backend Tech Stack 👍
 
 ---
 
-## React ⚛
-
-React is a popular javascript framework, often compared to Vue and Angular.
-
-The concept in React is to create files as 'Components' and then import them into one another when required.
-
-<Notes>
-	The syntax is at first intimidating but you will build pages with HTML,
-	JavaScript and CSS (Another hot debate).
-</Notes>
-
----
-
-## Styled Components
-
-Styled Components is a node package you can import into React that will allow you to define your CSS/SCSS within a component file.
-
-<Notes>
-Essentially allowing you to keep all code related to a component in one neat file.
-
-As well as this, any data your component has access to, you can pass into styled components to render new CSS on the fly.
-
-</Notes>
-
----
-
-## Gatsby
-
-Gatsby is a static site generator that can generate static HTML files from data imported into the framework.
-
-The final result is that which encompasses all of the latest and greatest available in React tooling with an old-school feel of hosting a site made up of HTML, CSS and JS files alone.
-
-<Notes>
-As Gatsby is a fresh technology, many developers are opting to search for new CMS alternatives to WordPress which are compatible with Gatsby.
-
-Either that or they are completely rebuilding their sites in markdown files.
-
-I'm in favour of porting existing technologies to improve client usability and reduce the cost of embracing new technologies.
-
-</Notes>
-
----
-
-## Netlify
-
-Netlify is one of the most delightful hosting platforms available.
-
-Even better, it's completely free to get started with hosting static sites, it'll even automatically build and deploy our site when changes are made to our repositories.
-
----
-
-### Backend
-
-- WordPress
-- Headless WordPress
-- Gutenberg
-- ACF
-
-### Frontend
-
-- React
-- Styled Components
-- Gatsby
-- Netlify
-
----
-
-## Still With Me? 😅
-
-Don't be put off!
+## Details to Follow
 
 I know we've covered a few different technologies, but this talk is a step by step process.
+
+So I will be going in to some more detail shortly.
 
 <Notes>
 	if you have any questions throughout the talk, I'll be taking a 2-minute break
@@ -223,20 +261,9 @@ I know we've covered a few different technologies, but this talk is a step by st
 
 ---
 
-## Let's Go!
-
----
-
-## The Task (Project)
+## Setting a Task
 
 I had set myself a task, to rebuild my personal website https://whatjackhasmade.co.uk 🔌
-
-<Notes>
-Second plug
-
-I thought this would be a great excuse to tidy up my MVP version of my website, as well as take some time out from client requirements.
-
-</Notes>
 
 ---
 
@@ -293,26 +320,6 @@ My WordPress environment is hosted at [https://wjhm.noface.app](https://wjhm.nof
 
 The only plugin we need to follow this process is ACF 5.8.0
 
-<Notes>
-Installing Beta 4.0 introduces breaking changes to how repeater fields are output in my process.
-
-When ACF 5.8.0 gets an official release I'll work on tweaking the process.
-
-</Notes>
-
----
-
-## WordPress plugins - My Setup
-
-- ACF 5.8.0
-- Enhanced Media Library
-- JAMstack Deployments
-- Timber
-- TinyPNG
-- WP Migrate DB Pro
-- WP Migrate DB Pro (Media Add-on)
-- Yoast SEO
-
 ---
 
 ## WordPress Theme
@@ -362,47 +369,6 @@ To keep focus on a Headless WordPress build, I have for this project scraped all
 
 ---
 
-## What we actually have
-
-What we actually have - [https://wjhm.noface.app/wp-json/wp/v2/posts/](https://wjhm.noface.app/wp-json/wp/v2/posts/)
-
-<Notes>
-But what the heck is all of this?
-
-These are REST API endpoints which allow for Create, Read, Update and Delete (CRUD) functions to your WordPress setup.
-
-</Notes>
-
----
-
-## WordPress REST API
-
-Support for the WordPress REST API has been part of the project's core since version 4.7.0.
-
-<Notes>
-It opens doors as front-end frameworks are exploding in popularity.
-
-You can now adopt WordPress to work fairly seamlessly with any of your preferred development workflows.
-
-</Notes>
-
----
-
-## Headless WordPress
-
-So this is where the concept of headless WordPress comes into play.
-
-We are using WordPress as a content management system only.
-
-<Notes>
-Displaying data that we can digest in whatever language we want.
-
-As long as it accepts JSON!
-
-</Notes>
-
----
-
 ## How far can you get with the existing API?
 
 You can get pretty far in what you want to achieve with the existing API.
@@ -423,7 +389,7 @@ The endpoints were built to include as many use cases as possible, as a result, 
 
 ### Limitations
 
-You are limited to 100 results per page (I have over 200+ blogs I want to query without passing in several endpoints)
+You are limited to 100 results per page (I have over 250+ blog posts I want to query without passing in several endpoints)
 
 ---
 
@@ -431,7 +397,7 @@ You are limited to 100 results per page (I have over 200+ blogs I want to query 
 
 ### Missing Data
 
-I would love to get access to some ACF or Yoast SEO information from the endpoints but these are currently setup without plugins in mind
+I would love to get access to some ACF or Yoast SEO information from the endpoints but the current endpoints are currently setup without plugins in mind.
 
 ---
 
@@ -533,29 +499,7 @@ Our Endpoint - [https://wjhm.noface.app/wp-json/posts/v2/all](https://wjhm.nofac
 
 ---
 
-## Now we have our endpoints
-
-## Let's create some content
-
----
-
-## Gutenberg - Disable Defaults
-
-First, let's disable the defaults that Gutenberg is giving us
-
----
-
-<CodeSurfer
-	theme={shadesOfPurple}
-	title="Gutenberg - Disable Defaults"
-	code={DisableGutenberg}
-	lang="php"
-/>
-
-<Notes>
-	With this code, we are essentially saying to Gutenberg, only display the
-	blocks with these names.
-</Notes>
+## Now we have our endpoints, let's create some content
 
 ---
 
@@ -563,22 +507,15 @@ First, let's disable the defaults that Gutenberg is giving us
 
 Now before we go ahead and develop a building block, let's first pick the block we want to build and break it down.
 
-One of my favourite components for a website is a hero component, so let's stick with that.
-
----
-
-<img src="assets/images/homepage-components.jpg" width="800px" />
+One of my favourite components for a website is as mentioned, the hero component, so let's stick with that.
 
 ---
 
 ### Atoms That Create The Hero
 
-In the hero component we have a few parts of data that will be editable.
+<img src="assets/images/hero-components.jpg" width="800px" />
 
-- Background Colour
-- Subheading
-- Heading
-- Paragraph
+In the hero component we have a few parts of data that will be editable. Including the background colour, subheading, heading, and paragraph/intro.
 
 <Notes>
 Now the list could continue with data such as height, font-size, text colour, etc.
@@ -652,26 +589,7 @@ With Timber documentation on 'acf_register_block' found at - [https://timber.git
 
 ## Register the block in ACF
 
----
-
 <img src="assets/images/acf-block-fields.png" width="1500px" />
-
----
-
-## Creating The Twig File
-
-As you may have noticed when registering the hero block, we can render a .twig file with the contents of the fields.
-
----
-
-<CodeSurfer theme={shadesOfPurple} code={HeroTwig} lang="twig" />
-
-<Notes>
-I HIGHLY recommend including this for a clients site, as it will give them immediate previews of what the new content will include on the final site.
-
-Otherwise you'll get confused clients asking why Jack has asked you to make a white screen.
-
-</Notes>
 
 ---
 
@@ -702,8 +620,6 @@ Then I simply sync the ACF changes on the live site to grab the fields it expect
 ---
 
 ## The Hero Component in Gutenberg
-
----
 
 <img src="assets/images/acf-hero-block-content.png" width="1200px" />
 
@@ -747,7 +663,7 @@ I want the endpoints to act as a list of ingredients, not cook the meal.
 ---
 
 <CodeSurfer
-	title="Post JSON vs. Page JSON"
+	title="Post JSON vs. Block JSON"
 	theme={shadesOfPurple}
 	code={acfJSON}
 	lang="json"
@@ -763,7 +679,7 @@ But when creating pages, I want full access to the blocks properties to use them
 ---
 
 <CodeSurfer
-	title="Post JSON vs. Page JSON"
+	title="Post JSON vs. Block JSON"
 	theme={shadesOfPurple}
 	code={blockJSON}
 	lang="json"
@@ -817,7 +733,7 @@ I've created the following PHP functional files -
 		{
 			range: [14, 16],
 			notes:
-				"Finally I am using a new functoin parse_blocks to process the block string and returning it as an array of objects"
+				"Finally I am using a new function parse_blocks to process the block string and returning it as an array of objects"
 		}
 	]}
 />
@@ -838,7 +754,7 @@ I've created the following PHP functional files -
 
 ---
 
-## WHEW - Backend Complete
+## Backend Complete 😅
 
 ---
 
@@ -873,44 +789,6 @@ Just to recap, the front-end will be built with Gatsby which is completely depen
 	you have npm or yarn on your machine, you'll be fine setting up a new gatsby
 	site.
 </Notes>
-
----
-
-## Gatsby - Overview
-
-As of writing this Gatsby is now in version 2 of it's release.
-
-It's free to download and get started, and the starter documentation can be found on their site - [https://www.gatsbyjs.org/docs/quick-start/](https://www.gatsbyjs.org/docs/quick-start/)
-
-If you want to follow along with my site example, download the repository from - [https://github.com/whatjackhasmade/Don-t-call-it-a-comeback](https://github.com/whatjackhasmade/Don-t-call-it-a-comeback)
-
----
-
-<img src="assets/images/gatsby-workflow.png" width="1000px" />
-
----
-
-## Gatsby vs Traditional server
-
----
-
-<img src="assets/images/jam-stack.jpg" width="1000px" />
-
----
-
-## Benefits of Gatsby
-
-- Hot reloading
-- Enables an offline first approach
-- No need for heavy queries
-- No need for server queries
-- Too much to list in one slide
-
----
-
-## Gatsby Plugins
-
-If we look again at the diagram of Gatsby's rendering process, you'll see that we have some form of data input for Gatsby to process.
 
 ---
 
