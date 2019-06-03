@@ -226,7 +226,7 @@ You can now adopt WordPress to work fairly seamlessly with any of your preferred
 
 ---
 
-## Advanced Custom Fields (ACF)
+<FullImage src="assets/images/banner-acf.png" />
 
 ---
 
@@ -240,6 +240,12 @@ ACF allows developers to add custom fields (who'd have thought?) to posts and pa
 	Not only this but as of ACF 5.8.0 you can now define and attach custom fields
 	to Gutenberg blocks using ACF.
 </Notes>
+
+---
+
+## Advanced Custom Fields (ACF)
+
+<img src="assets/images/acf-preview.png" width="1000px" />
 
 ---
 
@@ -302,6 +308,10 @@ I'm a big fan of atomic design, for anyone unfamiliar, atomic design is a concep
 
 ---
 
+<img src="assets/images/hero-components.jpg" width="800px" />
+
+---
+
 ## Development Time
 
 So we've got our designs, now time to start Developing
@@ -357,6 +367,8 @@ To keep focus on a Headless WordPress build, I have for this project scraped all
 
 ## WordPress Posts and Pages - WP Admin
 
+With a fresh theme and environment, I then pulled in my local machines database full of posts and pages from my previous site.
+
 ---
 
 <img src="assets/images/posts.png" width="1400px" />
@@ -369,11 +381,21 @@ To keep focus on a Headless WordPress build, I have for this project scraped all
 
 ---
 
+<FullImage src="assets/images/full-angry.png" />
+
+---
+
+## Headless WordPress Endpoint
+
+Besides an angry project manager that expected something to look at, we have our API endpoints - [https://wjhm.noface.app/wp-json/wp/v2/posts/](https://wjhm.noface.app/wp-json/wp/v2/posts/)
+
+---
+
 ## How far can you get with the existing API?
 
 You can get pretty far in what you want to achieve with the existing API.
 
-However, there are a few issues I have with the endpoints
+However, there are a few issues I have with the endpoints...
 
 ---
 
@@ -640,7 +662,7 @@ The layout is a bit hit and miss depending on what fields you include and how ma
 
 It's like magic
 
-This is something to get excited about for all your WordPress projects
+This is something to get excited about for any and all of your WordPress projects.
 
 Even if you aren't interested in React, Gatsby or the front-end portion of this presentation.
 
@@ -648,7 +670,7 @@ Even if you aren't interested in React, Gatsby or the front-end portion of this 
 
 ## So far so good
 
-We've registered our custom block and it renders nicely in our backend.
+We've registered our custom block and it functions nicely in our backend.
 
 The only issue is that the block doesn't solve the problem I have when it comes to pages.
 
@@ -698,9 +720,9 @@ An array of gutenblocks and their properties.
 
 I've created the following PHP functional files -
 
-- get-acf-images.php
-- get-acf-titles.php
-- convert-the-content.php
+- [get-acf-images.php](https://github.com/whatjackhasmade/WJHM-Wordpress-Theme/blob/master/includes/functions/get-acf-images.php)
+- [get-acf-titles.php](https://github.com/whatjackhasmade/WJHM-Wordpress-Theme/blob/master/includes/functions/get-acf-titles.php)
+- [convert-the-content.php](https://github.com/whatjackhasmade/WJHM-Wordpress-Theme/blob/master/includes/functions/convert-the-content.php)
 
 <Notes>
 	For the most part, I've forgotten how they even work and would greatly
@@ -758,7 +780,23 @@ I've created the following PHP functional files -
 
 ---
 
+- We've got a WordPress setup ✔
+- We've got a WordPress theme installed ✔
+- We've got content on our site to use ✔
+- We've got custom endpoints for us to use with Gatsby ✔
+
+---
+
 ## Time to Take 2 minutes for Questions or Heckling
+
+<iframe
+	width="940"
+	height="540"
+	src="https://www.youtube.com/embed/xEp2SJmNuXM"
+	frameBorder="0"
+	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+	allowFullScreen
+/>
 
 <Notes>
 Grab yourselves some water, have a toilet break if you want
@@ -766,6 +804,10 @@ Grab yourselves some water, have a toilet break if you want
 Fire away with any questions you may have, or heckle me if you're bored of this talk
 
 </Notes>
+
+---
+
+<FullImage src="assets/images/full-frontend.png" />
 
 ---
 
@@ -780,15 +822,84 @@ Right let's get into the front-end of the website.
 
 ---
 
-## React - Recap
+## Gatsby - Recap
 
 Just to recap, the front-end will be built with Gatsby which is completely dependant on React.
 
 <Notes>
-	I won't go too much into React and how to get started, for the most part if
-	you have npm or yarn on your machine, you'll be fine setting up a new gatsby
-	site.
+	I won't go too much into React, what it is and how to get started, for the
+	most part if you have npm or yarn on your machine, you'll be fine setting up a
+	new gatsby site.
 </Notes>
+
+---
+
+## Gatsby's Blog Starter
+
+---
+
+## Boot up the starter
+
+Use the Gatsby CLI to create a new site, specifying the blog starter.
+
+```
+gatsby new my-blog-starter https://github.com/gatsbyjs/gatsby-starter-blog
+```
+
+---
+
+## Start developing
+
+Navigate into your new site’s directory and start it up.
+
+```
+cd my-blog-starter/
+gatsby develop
+```
+
+---
+
+## Open the source code and start editing
+
+Your site is now running at `http://localhost:8000`
+
+_Note: You'll also see a second link: _`http://localhost:8000/___graphql`.
+
+This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql).
+
+---
+
+## Gatsby's blog starter - Directory
+
+```
+.
+├── node_modules
+├── src
+├── .gitignore
+├── .prettierrc
+├── gatsby-browser.js
+├── gatsby-config.js
+├── gatsby-node.js
+├── gatsby-ssr.js
+├── LICENSE
+├── package-lock.json
+├── package.json
+└── README.md
+```
+
+---
+
+## Gatsby - Creating Pages
+
+To create pages in Gatsby, you can either create a React component within the 'pages' directory and Gatsby will generate the component as a HTML file.
+
+Similar to how you could create mypage.php and it would become accessible on your server.
+
+---
+
+## Gatsby - Creating Pages
+
+Alternatively we can generate pages from API sources (like WordPress endpoints 👀).
 
 ---
 
@@ -796,13 +907,34 @@ Just to recap, the front-end will be built with Gatsby which is completely depen
 
 To gather the data, one of Gatsby's open source plugins can be plucked from their directory and installed via NPM and the gatsby-config.js file in our site root directory.
 
-There are existing plugins for WordPress data, but I prefer to create my own.
+There are existing plugins for WordPress data, but most require a specific theme or setup which deviates from our setup.
+
+So we'll create our own 😁
 
 ---
 
 ## Creating our Gatsby WordPress plugin
 
-<img src="assets/images/gatsby-plugin.png" width="500px" />
+```
+.
+├── plugins
+├───── gatsby-source-wordpress
+├──────── gatsby-node.js
+├──────── package.json
+├──────── yarn.lock
+├── node_modules
+├── src
+├── .gitignore
+├── .prettierrc
+├── gatsby-browser.js
+├── gatsby-config.js
+├── gatsby-node.js
+├── gatsby-ssr.js
+├── LICENSE
+├── package-lock.json
+├── package.json
+└── README.md
+```
 
 ---
 
@@ -894,15 +1026,13 @@ I prefer to use a tool called GraphQL Playground as it has a dark mode which hel
 
 ---
 
-<img src="assets/images/graphql-playground.png" width="700px" />
+<img src="assets/images/graphql-playground.png" width="1200px" />
 
 ---
 
 ## My First Gatsby GraphQL Query
 
----
-
-<img src="assets/images/graphql-playground-query.png" width="1200px" />
+<img src="assets/images/graphql-playground-query.png" width="1400px" />
 
 ---
 
@@ -915,17 +1045,11 @@ I prefer to use a tool called GraphQL Playground as it has a dark mode which hel
 
 ---
 
-## Pages in Gatsby
+## Pages With Queries
 
-Similar to how with basic PHP setups, you can add a new page by adding a `blog.php` file and you'll then get a `/blog` path on your site.
+We now have 'nodes' that are accessible as the node type of 'Page'.
 
-The same can be done in Gatsby's `pages` directory.
-
----
-
-## Auto-generate pages with JSON and GraphQL
-
-We'll be skipping that and instead auto generating the pages based on the JSON available at our custom endpoints.
+We'll be using these nodes to auto generate pages based on the JSON imported from our custom endpoints.
 
 ---
 
